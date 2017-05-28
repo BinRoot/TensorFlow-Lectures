@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>TensorFlow - Lecture 1</title>
+
+    <meta name="description" content="A course on the world's fastest growing machine learning library, TensorFlow">
+    <meta name="author" content="Nishant Shukla">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/serif.css" id="theme">
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+
+    <style>
+      body {
+      padding-top: 30px;
+      padding-bottom: 40px;
+      }
+    </style>
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="css/pojoaque.css">
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+      document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+    </script>
+
+    <script src="js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+
+
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+  </head>
+
+
+  <body>
+
+    <script src="js/nav.js"></script>
+
+    <script>
+      function toggleElements(one, two) {
+      document.getElementById(one).style.display = 'none';
+      document.getElementById(two).style.display = 'block';
+      }
+    </script>
+
+
+    <div class="reveal">
+
+      <!-- Slides begin here! -->
+      <div class="slides">
+	<section>
+
+          <section>
+            <h2>Machine Learning with TensorFlow</h2>
+            <p>Lecture 10</p>
+            <p><i>Word2Vec</i></p>
+	    <aside class="notes">Press n (or swipe up) for next slide</aside>
+	  </section>
+
+	  <section>
+	    <h3>Using These Slides</h3>
+	    <center>
+	      <table width="80%">
+		<tr>
+		  <td><code>↓</code>, <code>PgDn</code>, <code>n</code>, <code>j</code></td>
+		  <td>next slide</td>
+		</tr>
+		<tr>
+		  <td><code>↑</code>, <code>PgUp</code>, <code>p</code>, <code>k</code></td>
+		  <td>prev slide</td>
+		</tr>
+		<tr>
+		  <td><code>Esc</code></td>
+		  <td>enables <code>ctrl+f</code> globally</td>
+		</tr>
+	      </table>
+	    </center>
+
+	    <aside class="notes">Hi there! This is a lecture note. Every slide has a little blurb of text like this!</aside>
+	  </section>
+
+	  <section>
+	    <p><code>tf.nn.embedding_lookup</code></p>
+	    <p><small><a target="_blank" href="https://github.com/BinRoot/TensorFlow-Book/blob/master/ch11_word2vec/Concept01_embedding_lookup.ipynb">Check out some code examples</a></small></p>
+	    <p>Lets you efficiently retrieve rows from a table</p>
+	    <table>
+	      <tr>
+		<th>word</th>
+		<th>number</th>
+		<th>vector</th>
+	      </tr>
+	      <tr>
+		<td><i>'the'</i></td>
+		<td>17</td>
+		<td>[1,0,0,0]</td>
+	      </tr>
+	      <tr>
+		<td><i>'fight'</i></td>
+		<td>22</td>
+		<td>[0,1,0,0]</td>
+	      </tr>
+	      <tr>
+		<td><i>'wind'</i></td>
+		<td>35</td>
+		<td>[0,0,1,0]</td>
+	      </tr>
+	      <tr>
+		<td><i>'like'</i></td>
+		<td>51</td>
+		<td>[0,0,0,1]</td>
+	      </tr>
+	    </table>
+	    <aside class="notes">
+	      Given a list of tensors, you can index them efficiently using the `embedding_lookup` function.
+	    </aside>
+	  </section>
+
+	  <section>
+	    <h3>The embedding matrix</h3>
+	    
+	    <p>Vocabulary: {<i>'the'</i>, <i>'fight'</i>, <i>'wind'</i>, <i>'like'</i>, ...}</p>
+
+	    <p>$M \in \mathbb{R}^{V \times 128}$</p>
+	    
+	    <p>$M_{i,j} \sim \mathcal{U}(-1, 1)$</p>
+
+	    <pre><code class="haskell">
+embeddings = tf.Variable(
+    tf.random_uniform([vocabulary_size, embedding_size],
+    -1.0,
+    1.0)
+)
+	    </code></pre>
+
+	    <aside class="notes">
+	      In TensorFlow, the embeddings will be represented as a matrix. The type is `tf.Variable` because the optimizer will change the value of the matrix to minimize its cost function.
+	    </aside>
+	  </section>
+
+	  <section>
+	    <h3>Predicting context words</h3>
+
+	    <blockquote>"fight like the wind"</blockquote>
+	   
+	    <p>$f$(<i>'like'</i>) $~=~$ 50% <i>'fight'</i>, &nbsp; 50% <i>'the'</i></p>
+
+	    
+	    <small><table>
+	      <tr>
+		<th>word</th>
+		<th>number</th>
+		<th>one-hot</th>
+	      </tr>
+	      <tr>
+		<td><i>'the'</i></td>
+		<td>17</td>
+		<td>[1,0,0,0]</td>
+	      </tr>
+	      <tr>
+		<td><i>'fight'</i></td>
+		<td>22</td>
+		<td>[0,1,0,0]</td>
+	      </tr>
+	      <tr>
+		<td><i>'wind'</i></td>
+		<td>35</td>
+		<td>[0,0,1,0]</td>
+	      </tr>
+	      <tr>
+		<td><i>'like'</i></td>
+		<td>51</td>
+		<td>[0,0,0,1]</td>
+	      </tr>
+	    </table></small>
+
+	    <p>$f([0, 0, 0, 1]) = [\frac{1}{2}, \frac{1}{2},  0, 0]$</p>
+	    <p>$f(\vec{w_t}) = \vec{w_c}$</p>
+
+	    <aside class="notes">Given a word, we want to design a neural network model that tells us which words also show up in context.</aside>
+
+	  </section>
+
+	  <section>
+	    <h3>Simple architecture</h3>
+	    <strong>Input Network</strong>
+	    <p>Input word: $w \in \mathbb{R}^{V}$</p>
+	    <p>Parameters: $M_1 \in \mathbb{R}^{V \times 128} ~,~ b_1 \in \mathbb{R}^{128}$</p>
+	    <p>Hidden layer: $h(w) = w M_1 + b_1$</p>
+	    <strong>Output Network</strong>
+	    <p>More parameters: $M_2 \in \mathbb{R}^{128 \times V} ~,~ b_2 \in \mathbb{R}^{V}$</p>
+	    <p>Output: $y(h) = \text{softmax}( hM_2 + b_2 )$</p>
+	    <aside class="notes">The neural network architecture is a sequence of input and output networks. The input network embeds the input word into a small vector, and the output network decodes it back into the one-hot encoding.</aside>
+	  </section>
+
+	  
+	  <section data-background-color="#ffaaaa">
+	    <h3><strong>Warning...</strong></h3>
+	    <p>You want to train a model: $\vec{y} = f(\vec{x};\theta)$</p>
+	    <p>But, there's too many output classes: $\dim \vec{y} \geq 10^3$</p>
+	    <p>Problem is <code>softmax</code> lags on a huge output layer.</p>
+	    <aside class="notes">The last layer of this neural network will need to represent a probability distribution, which is typically done using `softmax`, which is an expensive computation on huge data.</aside>
+	  </section>
+
+<!--	  <section data-background="https://i.giphy.com/Evp4SYXEt5oly.gif" data-background-size="75%"></section> -->
+	  <section data-background="imgs/too-good-to-be-true.gif" data-background-size="75%"></section>
+	  
+	  <section>
+	    <h3>Candidate sampling</h3>
+	    <p>Distinguish <strong>good</strong> pairs from <strong>bad</strong> pairs</p>
+	    <p><code>tf.nn.nce_loss</code></p>
+	    <p>Output network weights and biases:</p>
+	    <pre><code class="haskell">
+nce_weights = tf.Variable(
+  tf.truncated_normal([vocabulary_size, embedding_size],
+                      stddev=1.0 / math.sqrt(embedding_size)))
+
+nce_biases = tf.Variable(tf.zeros([vocabulary_size]))
+	    </code></pre>
+	    
+	  </section>
+
+	  
+	  <section>
+	    <h3>NCE loss</h3>
+
+	    <pre><code>
+loss_vec = tf.nn.nce_loss(
+    weights=nce_weights,         # size is (50000, 128)
+    biases=nce_biases,           # size is (50000)
+    labels=train_labels,         # size is (8, 1)
+    inputs=embed,                # size is (8, 128)
+    num_sampled=num_sampled,     # value is 64
+    num_classes=vocabulary_size  # value is 50000
+)
+		
+	    </code></pre>
+	    
+	    <pre><code class="haskell">
+loss = tf.reduce_mean( loss_vec )
+	    </code></pre>
+	  </section>
+	  
+	  
+	  <section>
+	    <h2>Official example code</h2>
+	    <h3><code>word2vec_basic.py</code></h3>
+	    <p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r1.1/tensorflow/examples/tutorials/word2vec/word2vec_basic.py">Find it on GitHub</a></p>
+	    <aside class="notes">
+	      TensorFlow's official documentation contains example code for implementing word2vec. Let's take a look.
+	    </aside>
+	  </section>
+	  
+	  <section>
+	    <h3>Loads words into memory</h3>
+	    <pre><code class="haskell">
+words = read_data("text8.zip")
+	    </code></pre>
+
+	    <ul>
+	      <li><i>'anarchism'</i></li>
+	      <li><i>'originated'</i></li>
+	      <li><i>'as'</i></li>
+	      <li><i>'a'</i></li>
+	      <li><i>'term'</i></li>
+	      <li>... 17,005,203 more</li> 
+	    </ul>
+	    
+	    <aside class="notes">
+	      To train a model, we first need data. In this case, a list of words extracted from actual sentences is good enough.
+	    </aside>
+
+	  </section>
+
+	  <section>
+	    <h3>Converts words to numbers</h3>
+	    <pre><code class="haskell">
+processed_data = build_dataset(words, vocabulary_size=50000)
+	    </code></pre>
+
+	    <table>
+	      <tr>
+		<th>
+		  id
+		</th>
+		<th>
+		  word
+		</th>
+		<th>
+		  count
+		</th>
+	      </tr>
+	      <tr>
+		<td>
+		  5239
+		</td>
+		<td>
+		  <i>'anarchism'</i>
+		</td>
+		<td>
+		  303
+		</td>
+	      </tr>
+	      <tr>
+		<td>
+		  3084
+		</td>
+		<td>
+		  <i>'originated'</i>
+		</td>
+		<td>
+		  572
+		</td>
+	      </tr>
+	      <tr>
+		<td>
+		  12
+		</td>
+		<td>
+		  <i>'as'</i>
+		</td>
+		<td>
+		  131,815
+		</td>
+	      </tr>
+	      <tr>
+		<td>
+		  6
+		</td>
+		<td>
+		  <i>'a'</i>
+		</td>
+		<td>
+		  325,873
+		</td>
+	      </tr>
+	      <tr>
+		<td>
+		  195
+		</td>
+		<td>
+		  <i>'term'</i>
+		</td>
+		<td>
+		  7219
+		</td>
+	      </tr>
+	      <tr>
+		<td>
+		  ...
+		</td>
+		<td>
+		  ...
+		</td>
+		<td>
+		  ...
+		</td>
+	      </tr>
+
+	    </table>
+	    
+	    <aside class="notes">
+	      Associate each word with a unique number. In this example, only the top 50000 words matter. Words not seen often map to a special "UNK" word, which stands for "unknown".
+	    </aside>
+	  </section>
+
+	  <section>
+	    <h3>Prepares batches</h3>
+	    <pre><code class="haskell">
+b = generate_batch(batch_size=8, num_skips=2, skip_window=1)
+	    </code></pre>
+
+	    <p><i>"Anarchism originated as a term of..."</i></p>
+
+	    <small>
+	      <ol>
+		<li><i>'originated'</i> → <i>'anarchism'</i></li>
+		<li><i>'originated'</i> → <i>'as'</i></li>
+		<li><i>'as'</i> → <i>'originated'</i></li>
+		<li><i>'as'</i> → <i>'a'</i></li>
+		<li><i>'a'</i> → <i>'as</i>'</li>
+		<li><i>'a'</i> → <i>'term'</i></li>
+		<li><i>'term'</i> → <i>'a'</i></li>
+		<li><i>'term'</i> → <i>'of'</i></li>
+	      </ol>
+	    </small>
+
+	    <aside class="notes">
+	      A batch-size of 8 means that 8 input-output pairs will be generated. The `num_skips` variable declares how many times to reuse an input to generate a label. The `skip_window` variable declares how many words to consider left and right.
+	    </aside>
+	  </section>
+
+
+	  
+	</section>
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    
+    <script>
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+      controls: true,
+      progress: true,
+      history: true,
+      center: true,
+      mouseWheel: true,
+      rollingLinks: false,
+      showNotes: true,
+
+      theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+      transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+      // Optional libraries used to extend on reveal.js
+      dependencies: [
+      { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      // { src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+      { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+      // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+      { src: 'plugin/math/math.js', async: true }
+      ]
+      });
+
+    </script>
+
+    <script>window.jQuery || document.write('<script src="js/jquery-3.2.1.min.js"><\/script>')</script>
+      <script src="js/bootstrap.min.js"></script>
+
+      <script>
+	Reveal.addEventListener( 'slidechanged', function( event ) {
+	// event.previousSlide, event.currentSlide, event.indexh, event.indexv
+	var notes = event.currentSlide.querySelector(".notes");
+	if(notes) {
+        console.info("---");
+        console.info(notes.innerHTML.replace(/\n\s+/g,'\n'));
+	}
+	} );
+      </script>
+
+      <script src="js/main.js"></script>
+  </body>
+</html>
