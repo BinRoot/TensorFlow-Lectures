@@ -27,10 +27,12 @@ import numpy as np
 from six.moves import urllib
 from six.moves import xrange  # pylint: disable=redefined-builtin
 import tensorflow as tf
+from tensorflow.contrib.tensorboard.plugins import projector
 
 # Step 1: Download the data.
 url = 'http://mattmahoney.net/dc/'
 
+LOG_DIR = 'tb_files'
 
 def maybe_download(filename, expected_bytes):
   """Download a file if not present, and make sure it's the right size."""
@@ -141,22 +143,22 @@ graph = tf.Graph()
 with graph.as_default():
 
   # Input data.
-  train_inputs = tf.placeholder(tf.int32, shape=[batch_size])
-  train_labels = tf.placeholder(tf.int32, shape=[batch_size, 1])
-  valid_dataset = tf.constant(valid_examples, dtype=tf.int32)
+  train_inputs = tf.placeholder(tf.int32, shape=[batch_size], name='train_inputs')
+  train_labels = tf.placeholder(tf.int32, shape=[batch_size, 1], name='train_labels')
+  valid_dataset = tf.constant(valid_examples, dtype=tf.int32, name='valid_dataset')
 
   # Ops and variables pinned to the CPU because of missing GPU implementation
   with tf.device('/cpu:0'):
     # Look up embeddings for inputs.
     embeddings = tf.Variable(
-      tf.random_uniform([vocabulary_size, embedding_size], -1.0, 1.0))
+      tf.random_uniform([vocabulary_size, embedding_size], -1.0, 1.0), name='embeddings')
     embed = tf.nn.embedding_lookup(embeddings, train_inputs)
 
     # Construct the variables for the NCE loss
     nce_weights = tf.Variable(
       tf.truncated_normal([vocabulary_size, embedding_size],
-                          stddev=1.0 / math.sqrt(embedding_size)))
-    nce_biases = tf.Variable(tf.zeros([vocabulary_size]))
+                          stddev=1.0 / math.sqrt(embedding_size)), name='nce_weights')
+    nce_biases = tf.Variable(tf.zeros([vocabulary_size]), name='nce_biases')
 
   # Compute the average NCE loss for the batch.
   # tf.nce_loss automatically draws a new sample of the negative labels each
@@ -168,6 +170,18 @@ with graph.as_default():
                    inputs=embed,
                    num_sampled=num_sampled,
                    num_classes=vocabulary_size))
+
+  tf.summary.scalar("loss_function", loss)
+  merged_summary_op = tf.summary.merge_all()
+
+  saver = tf.train.Saver()
+  config = projector.ProjectorConfig()
+  tb_embedding_matrix = config.embeddings.add()
+  tb_embedding_matrix.tensor_name = embeddings.name
+  tb_embedding_matrix.metadata_path = os.path.join(LOG_DIR, 'metadata.tsv')
+
+  summary_writer = tf.summary.FileWriter(LOG_DIR, graph=graph)
+  projector.visualize_embeddings(summary_writer, config)
 
   # Construct the SGD optimizer using a learning rate of 1.0.
   optimizer = tf.train.GradientDescentOptimizer(1.0).minimize(loss)
@@ -209,8 +223,13 @@ with tf.Session(graph=graph) as session:
       print("Average loss at step ", step, ": ", average_loss)
       average_loss = 0
 
+    if step % 1000:
+      summary = session.run(merged_summary_op, feed_dict=feed_dict)
+      summary_writer.add_summary(summary, step)
+
     # Note that this is expensive (~20% slowdown if computed every 500 steps)
     if step % 10000 == 0:
+      saver.save(session, os.path.join(LOG_DIR, 'model.ckpt'), step)
       sim = similarity.eval()
       for i in xrange(valid_size):
         valid_word = reverse_dictionary[valid_examples[i]]

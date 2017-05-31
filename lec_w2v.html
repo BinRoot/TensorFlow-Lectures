@@ -246,6 +246,11 @@ loss = tf.reduce_mean( loss_vec )
 	    </code></pre>
 	  </section>
 	  
+	  <section>
+	    <h3>Visualizing the computation graph</h3>
+	    <img src="imgs/tensorboard_nce_loss.png"/>
+	    <aside class="notes">In TensorBoard, you can visualize how data flows through the nodes in TensorFlow. For the NCE loss function, you can see how there are 4 required dependencies.</aside>
+	  </section>
 	  
 	  <section>
 	    <h2>Official example code</h2>
