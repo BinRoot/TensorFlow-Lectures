@@ -13,24 +13,38 @@ document.write('\
 			<div class="collapse navbar-collapse" id="bs-navbar-collapse-1">\
 				<ul class="nav navbar-nav">\
 <li class="dropdown">\
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Lectures <span class="caret"></span></a>\
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Getting started <span class="caret"></span></a>\
   <ul class="dropdown-menu">\
     <li><a href="#">Machine Learning</a></li>\
     <li><a href="#">TensorFlow</a></li>\
-    <li><a href="#">TensorBoard (Part 1)</a></li>\
-    <li role="separator" class="divider"></li>\
+    <li><a href="#">TensorBoard</a></li>\
+  </ul>\
+</li>\
+<li class="dropdown">\
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Classic algorithms <span class="caret"></span></a>\
+  <ul class="dropdown-menu">\
     <li><a href="#">Regression</a></li>\
     <li><a href="#">Classification</a></li>\
-    <li><a href="#">TensorBoard (Part 2)</a></li>\
     <li role="separator" class="divider"></li>\
     <li><a href="#">Convolutional Neural Networks</a></li>\
     <li><a href="#">Recurrent Neural Networks</a></li>\
-    <li><a href="#">TensorBoard (Part 3)</a></li>\
+  </ul>\
+</li>\
+<li class="dropdown">\
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Embeddings <span class="caret"></span></a>\
+  <ul class="dropdown-menu">\
+    <li><a href="#">Word2Vec theory</a></li>\
+    <li><a href="#">Word2Vec code</a></li>\
+    <li><a href="#">Word2Vec TensorBoard</a></li>\
     <li role="separator" class="divider"></li>\
-    <li><a href="#">Word2Vec</a></li>\
-    <li><a href="#">Sense2Vec</a></li>\
-    <li><a href="#">TensorBoard (Part 4)</a></li>\
-    <li role="separator" class="divider"></li>\
+    <li><a href="#">Sense2Vec theory</a></li>\
+    <li><a href="#">Sense2Vec code</a></li>\
+    <li><a href="#">Sense2Vec TensorBoard</a></li>\
+  </ul>\
+</li>\
+<li class="dropdown">\
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Extra <span class="caret"></span></a>\
+  <ul class="dropdown-menu">\
     <li><a href="#">Optimization</a></li>\
     <li><a href="#">TensorFlow Serving</a></li>\
   </ul>\

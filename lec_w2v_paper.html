@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>TensorFlow - Lecture 1</title>
+
+    <meta name="description" content="A course on the world's fastest growing machine learning library, TensorFlow">
+    <meta name="author" content="Nishant Shukla">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/serif.css" id="theme">
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+
+    <style>
+      body {
+      padding-top: 30px;
+      padding-bottom: 40px;
+      }
+    </style>
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="css/pojoaque.css">
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+      document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+    </script>
+
+    <script src="js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+
+
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+  </head>
+
+
+  <body>
+
+    <script src="js/nav.js"></script>
+
+    <script>
+      function toggleElements(one, two) {
+      document.getElementById(one).style.display = 'none';
+      document.getElementById(two).style.display = 'block';
+      }
+    </script>
+
+
+    <div class="reveal">
+
+      <!-- Slides begin here! -->
+      <div class="slides">
+	<section>
+
+          <section>
+            <h2>Machine Learning with TensorFlow</h2>
+            <p>Lecture 1</p>
+            <p><i>How to read research papers: Word2Vec</i></p>
+	  </section>
+
+	  <section>
+	    <h3>Using These Slides</h3>
+	    <center>
+	      <table width="80%">
+		<tr>
+		  <td><code>↓</code>, <code>PgDn</code>, <code>n</code>, <code>j</code></td>
+		  <td>next slide</td>
+		</tr>
+		<tr>
+		  <td><code>↑</code>, <code>PgUp</code>, <code>p</code>, <code>k</code></td>
+		  <td>prev slide</td>
+		</tr>
+		<tr>
+		  <td><code>Esc</code></td>
+		  <td>enables <code>ctrl+f</code> globally</td>
+		</tr>
+	      </table>
+	    </center>
+
+	    <aside class="notes">Hi there! This is a lecture note. Every slide has a little blurb of text like this!</aside>
+	  </section>
+
+	  <section>
+	    <h3>Refinery</h3>
+	    <img src="imgs/refinery.jpg" />
+	  </section>
+
+	  <section>
+	    <h3>1. Research notes</h3>
+	    <img src="imgs/refinery_1.png" />
+	  </section>
+
+	  <section>
+	    <h3>2. Research papers</h3>
+	    <img src="imgs/refinery_2.png" />
+	  </section>
+
+	  <section>
+	    <h3>3. Academic textbooks</h3>
+	    <img src="imgs/refinery_3.png" />
+	  </section>
+
+	  <section>
+	    <h3>4. Programming books</h3>
+	    <img src="imgs/refinery_4.png" />
+	  </section>
+
+	  <section>
+	    <h3>5. Tech articles</h3>
+	    <img src="imgs/refinery_5.png" />
+	  </section>
+
+	  <section>
+	    <h3>6. Programming blogs</h3>
+	    <img src="imgs/refinery_6.png" />
+	  </section>
+
+	  
+	  <section>
+	    <h3>Blogs</h3>
+	    <a target="_blank" href="https://hackernoon.com/machine-learning-with-tensorflow-8873fdee2b68"><img src="imgs/blog_screenshot.png" width="50%" /></a>
+	  </section>
+
+	  <section>
+	    <h3>Tech articles</h3>
+	    <a target="_blank" href="https://machinelearning.technicacuriosa.com/2017/04/22/machine-learning-with-tensorflow/"><img src="imgs/article_screenshot.png" width="50%" /></a>
+	  </section>
+
+	  <section>
+	    <h3>Programming and technology books</h3>
+	    <a target="_blank" href="https://www.manning.com/books/machine-learning-with-tensorflow?a_aid=TensorFlow&a_bid=042443a4"><img src="imgs/book_screenshot.png" width="50%" /></a>
+	  </section>
+
+	  <section>
+	    <h3>Academic Textbooks</h3>
+	    <a target="_blank" href="https://www.amazon.com/Deep-Learning-Adaptive-Computation-Machine/dp/0262035618"><img src="imgs/textbook_screenshot.png" width="50%" /></a>
+	  </section>
+
+	  <section>
+	    <h3>Research Papers</h3>
+	    <a target="_blank" href="http://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf"><img src="imgs/paper_screenshot.png" width="50%" /></a>
+	  </section>
+
+	  <section>
+	    <h3>Dissect the title</h3>
+	    <blockquote><p>Distributed <strong>Representations</strong> of <font color="#da2323">Words and Phrases</font> and their <strong>Compositionality</strong></p></blockquote>
+	    <small>
+	    <p>Some immediate questions...</p>
+	    <ul>
+	      <li>Are <font color="#da2323">words</font> just one-word <font color="#da2323">phrases</font>?</li>
+	      <li>Words and phrases have <strong>representations</strong>?</li>
+	      <li>They also have <strong>compositionality</strong>?</li>
+	      <li>A representation can be <i>distributed</i>?</li>
+	    </ul>
+	    </small>
+	    <aside class="notes">Sometimes research papers have succinct titles that take a while to digest.</aside>
+	  </section>
+
+	  <section>
+	    <blockquote><p>Distributed <strong>Representations</strong> of <font color="#da2323">Words and Phrases</font> and their <strong>Compositionality</strong></p></blockquote>
+	    <a target="_blank" href="http://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf"><img src="imgs/w2v_abstract.png" /></a>
+	    <aside class="notes">Most of our questions in the previous slide can be answered in the abstract by highlighting key words that also occur in the title.</aside>
+	  </section>
+
+	  <section>
+	    <h3>Skip to the first figure</h3>
+	    <img src="imgs/w2v_fig1.png" />
+	  </section>
+
+	  <section>
+	    <h3>Understand the first equation</h3>
+	    <img src="imgs/w2v_skipgram_eq.png" />
+	  </section>
+
+	  <section>
+	    <p>Words are indexed in order left to right.</p>
+	    <p>$..., w_{t-2}, w_{t-1}, w_{t}, w_{t+1}, w_{t+2}, ...$</p>
+
+	    <table>
+	      <tr>
+		<th>Word</th>
+		<th>Index</th>
+	      </tr>
+	      <tr>
+		<td>the</td>
+		<td>1</td>
+	      </tr>
+	      <tr>
+		<td>quick</td>
+		<td>2</td>
+	      </tr>
+	      <tr>
+		<td>brown</td>
+		<td>3</td>
+	      </tr>
+	      <tr>
+		<td>fox</td>
+		<td>4</td>
+	      </tr>
+	      <tr>
+		<td>...</td>
+		<td>...</td>
+	      </tr>
+	      
+	    </table>
+	    
+	  </section>
+
+	  <section>
+	    <p>The $\mathcal{C}$ontext of a word is a tuple of neighboring words.</p>
+	    <p>$\mathcal{C}(w_t; c) := (w_{t-c}, ..., w_{t-1}, w_{t+1}, ..., w_{t+c})$</p>
+	    <br>
+	    <blockquote>the quick brown fox jumps over...</blockquote>
+	    <p>$\mathcal{C}(brown; 2) = (the, quick, jumps, over)$</p>
+	  </section>
+
+	  <section>
+	    <h3>"Maximize the average probability of predicting the context"</h3>
+	  </section>
+
+	  <section>
+	    <h3>Let's repharse that mathematically</h3>
+	    <blockquote><strong>Maximize</strong> the average probability of predicting the context</blockquote>
+	    <p>$\max$ <code>something</code></p>
+	  </section>
+
+	  <section>
+	    <h3>Keep going...</h3>
+	    <blockquote><font color="#aaaaaa">Maximize</font> <strong>the average</strong> probability of predicting the context</blockquote>
+	    <p>$\max \mathbf{E}[$ <code>something</code> $]$</p>
+
+	  </section>
+
+	  <section>
+	    <h3>And keep going...</h3>
+	    <blockquote><font color="#aaaaaa">Maximize the average</font> <strong>probability</strong> of predicting the context</blockquote>
+	    <p>$\mathbf{E}[p($ <code>something</code> $)]$</p>
+	  </section>
+
+	  <section>
+	    <h3>Done!</h3>
+	    <blockquote><font color="#aaaaaa">Maximize the average probability of</font> <strong>predicting the context</strong></blockquote>
+	    <p>$\mathbf{E}[p(\mathcal{C}(w_t) | w_t)]$</p>
+	  </section>
+
+	  <section>
+	    <p>Use log-probability instead:</p>
+	    <p>$\mathbf{E}[\log p(\mathcal{C}(w_t) | w_t)]$</p>
+
+	    <br>
+	    
+	    <p>Assume conditional independence:</p>
+	    <p>$=\mathbf{E}[ \log \big( p(w_{t-c} | w_t) ... p(w_{t+c} | w_t) \big) ]$</p>
+	    <br/>
+	    <p>Simplify notation:</p>
+	    <p>$=\mathbf{E}[\log \prod_{j} p(w_{t+j} | w_t) | w_t)]$ where $-c \leq j \leq c$ and $j \neq 0$</p>
+
+	  </section>
+
+	  <section>
+	    <p>Simplify log-of-products into sum-of-logs:</p>
+	    <p>$=\mathbf{E}[\sum_{j} \log p(w_{t+j} | w_t) | w_t)]$</p>
+	    <p><small>where $-c \leq j \leq c$ and $j \neq 0$</small></p>
+	    <br>
+	    <p>Assume uniform probability of words:</p>
+	    <p>$=\frac{1}{T}\sum_{w_t} \sum_{j} \log p(w_{t+j} | w_t) | w_t) $</p>
+	  </section>
+	  
+	</section>
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    
+    <script>
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+      controls: true,
+      progress: true,
+      history: true,
+      center: true,
+      mouseWheel: true,
+      rollingLinks: false,
+      showNotes: true,
+
+      theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+      transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+      // Optional libraries used to extend on reveal.js
+      dependencies: [
+      { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      // { src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+      { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+      // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+      { src: 'plugin/math/math.js', async: true }
+      ]
+      });
+
+    </script>
+
+    <script>window.jQuery || document.write('<script src="js/jquery-3.2.1.min.js"><\/script>')</script>
+      <script src="js/bootstrap.min.js"></script>
+
+      <script>
+	Reveal.addEventListener( 'slidechanged', function( event ) {
+	// event.previousSlide, event.currentSlide, event.indexh, event.indexv
+	var notes = event.currentSlide.querySelector(".notes");
+	if(notes) {
+        console.info("---");
+        console.info(notes.innerHTML.replace(/\n\s+/g,'\n'));
+	}
+	} );
+      </script>
+
+      <script src="js/main.js"></script>
+  </body>
+</html>
