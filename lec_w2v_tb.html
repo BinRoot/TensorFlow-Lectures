@@ -98,6 +98,76 @@
 
 	  <section data-background-video="imgs/tb_embedding.mp4" data-background-size="contain" data-background-video-loop="true">
 	  </section>
+
+	  <section>
+	    <h3>Try it yourself</h3>
+	    <p>Download the <code>word2vec_basic.py</code> example code</p>
+	    <p><a href="https://github.com/tensorflow/tensorflow/blob/r1.1/tensorflow/examples/tutorials/word2vec/word2vec_basic.py">GitHub link</a></p>
+	  </section>
+
+	  <section>
+	    <h3>Summon the Embedding Projector</h3>
+	    <p>TensorBoard looks for a file called <code>projector_config.ptxt</code></p>
+	    <p>One way to generate it is programatically.</p>
+	    <p>So, we'll need to import something to help us out:</p>
+	    <pre><code class="python">
+from tensorflow.contrib.tensorboard.plugins import projector
+	    </code></pre>
+	    <aside class="notes">If TensorBoard finds that file, then the Embedding Projector will be activated. On the TensorBoard UI, clicking on the Embeddings tab will then generate visualizations of the embedding matrix.</aside>
+	  </section>
+	  
+	  <section>
+	    <h3>Decide where to save meta info</h3>
+	    <pre><code class="python">
+LOG_DIR = 'tb_files'
+	    </code></pre>
+	  </section>
+
+	  <section>
+	    <h3>Prepare the <code>.ptxt</code> file</h3>
+	    <pre><code class="haskell">
+embeddings =    -- some NxD matrix --
+	    </code></pre>
+	    
+	    <pre><code class="haskell">
+config = projector.ProjectorConfig()
+		
+tb_embedding_matrix = config.embeddings.add()
+tb_embedding_matrix.tensor_name = embeddings.name
+tb_embedding_matrix.metadata_path =
+    os.path.join(LOG_DIR, "metadata.tsv")
+	    </code></pre>
+
+	    <pre><code class="haskell">
+summary_writer = tf.summary.FileWriter(LOG_DIR, graph=graph)
+projector.visualize_embeddings(summary_writer, config)
+	    </code></pre>
+	    
+	  </section>
+
+	  <section>
+	    <h3>Save the embedding matrix</h3>
+	    <pre><code class="haskell">
+saver = tf.train.Saver()	
+	    </code></pre>
+	    
+	    <pre><code class="haskell">
+if step % 10000 == 0:
+    saver.save(session,
+               os.path.join(LOG_DIR, "model.ckpt"),
+               step)
+	    </code></pre>
+	  </section>
+
+	  <section>
+	    <h3>Add names to your tensors</h3>
+	    <pre><code class="python">
+train_inputs = tf.placeholder(tf.int32,
+                              shape=[batch_size],
+                              name='train_inputs')  # <-- this
+	    </code></pre>
+	  </section>
+
 	  
 	</section>
       </div>
