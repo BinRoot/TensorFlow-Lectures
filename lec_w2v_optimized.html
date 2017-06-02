@@ -58,9 +58,8 @@
 
           <section>
             <h2>Machine Learning with TensorFlow</h2>
-            <p>Lecture 10</p>
-            <p><i>Visualizing Word2Vec in TensorBoard</i></p>
-	    <aside class="notes">Press n (or swipe up) for next slide</aside>
+            <p>Lecture 1</p>
+            <p><i>Optimized Word2Vec</i></p>
 	  </section>
 
 	  <section>
@@ -86,89 +85,122 @@
 	  </section>
 
 	  <section>
-	    <h3>Nearest neighbors</h3>
-	    <blockquote>"his"</blockquote>
-	    <img src="imgs/tensorboard_nearest_list.png"></img>
-	  </section>
-
-	  <section>
-	    <h3>Distance metrics and options</h3>
-	    <img src="imgs/tensorboard_nearest_list2.png"></img>
-	  </section>
-
-	  <section data-background-video="imgs/tb_embedding.mp4" data-background-size="contain" data-background-video-loop="true">
-	  </section>
-
-	  <section>
-	    <h3>Try it yourself</h3>
-	    <p>Download the <code>word2vec_basic.py</code> example code</p>
-	    <p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r1.1/tensorflow/examples/tutorials/word2vec/word2vec_basic.py">GitHub link</a></p>
-	  </section>
-
-	  <section>
-	    <h3>Summon the Embedding Projector</h3>
-	    <p>TensorBoard looks for a file called <code>projector_config.pbtxt</code></p>
-	    <p>One way to generate it is programatically.</p>
-	    <p>So, we'll need to import something to help us out:</p>
-	    <pre><code class="python">
-from tensorflow.contrib.tensorboard.plugins import projector
-	    </code></pre>
-	    <aside class="notes">If TensorBoard finds that file, then the Embedding Projector will be activated. On the TensorBoard UI, clicking on the Embeddings tab will then generate visualizations of the embedding matrix.</aside>
-	  </section>
-	  
-	  <section>
-	    <h3>Decide where to save meta info</h3>
-	    <pre><code class="python">
-LOG_DIR = 'tb_files'
-	    </code></pre>
-	  </section>
-
-	  <section>
-	    <h3>Prepare the <code>.ptxt</code> file</h3>
+	    <p>Download the dataset</p>
 	    <pre><code class="haskell">
-embeddings =    -- some NxD matrix --
+curl https://storage.googleapis.com/google-code-archive-source/v2/code.google.com/word2vec/source-archive.zip > source-archive.zip
 	    </code></pre>
-	    
+	    <p>Unzip it</p>
 	    <pre><code class="haskell">
-config = projector.ProjectorConfig()
+unzip -p source-archive.zip \
+  word2vec/trunk/questions-words.txt > questions-words.txt	
+	    </code></pre>
+	    <p>19.5k associations</p>			
+	  </section>
+
+	  <section>
+	    <h3>Semantic associations</h3>
+	    <p><small><strong>Capital of countries</strong>: Athens Greece Oslo Norway</small></p>
+	    <p><small><strong>Currency</strong>: Denmark krone Poland zloty</small></p>
+	    <p><small><strong>City in state</strong>: Dallas Texas Detroit Michigan</small></p>
+	    <p><small><strong>Family</strong>: father mother king queen</small></p>
+	  </section>
+
+	  <section>
+	    <h3>Syntactic associations</h3>
+	    <p><small><strong>Adjective to adverb</strong>: amazing amazingly calm calmly</small></p>
+	    <p><small><strong>Opposite</strong>: decided undecided tasteful distasteful</small></p>
+	    <p><small><strong>Comparative</strong>: bad worse hot hotter</small></p>
+	    <p><small><strong>Superlative</strong>: bad worst hot hottest</small></p>
+	  </section>
+
+	  <section>
+	    <h3>Evaluating the model</h3>
+	    <p>Predict the 4th word given first 3.</p>
+	    <pre><code class="haskell">
+target = c_emb + (b_emb - a_emb)		
+	    </code></pre>
+	  </section>
+
+	  <section>
+	    <a target="_blank" href="https://github.com/tensorflow/models/tree/master/tutorials/embedding">Follow the setup here</a>
+	    <pre><code class="python">
+TF_INC=$(python -c \
+  'import tensorflow as tf; print(tf.sysconfig.get_include())')
 		
-tb_embedding_matrix = config.embeddings.add()
-tb_embedding_matrix.tensor_name = embeddings.name
-tb_embedding_matrix.metadata_path =
-    os.path.join(LOG_DIR, "metadata.tsv")
-	    </code></pre>
-
-	    <pre><code class="haskell">
-summary_writer = tf.summary.FileWriter(LOG_DIR, graph=graph)
-projector.visualize_embeddings(summary_writer, config)
-	    </code></pre>
-	    
-	  </section>
-
-	  <section>
-	    <h3>Save the embedding matrix</h3>
-	    <pre><code class="haskell">
-saver = tf.train.Saver()	
-	    </code></pre>
-	    
-	    <pre><code class="haskell">
-if step % 10000 == 0:
-    saver.save(session,
-               os.path.join(LOG_DIR, "model.ckpt"),
-               step)
+g++ -std=c++11 -shared word2vec_ops.cc word2vec_kernels.cc \
+  -o word2vec_ops.so -fPIC -I $TF_INC -O2 \
+  -D_GLIBCXX_USE_CXX11_ABI=0
+		
 	    </code></pre>
 	  </section>
 
 	  <section>
-	    <h3>Add names to your tensors</h3>
-	    <pre><code class="python">
-train_inputs = tf.placeholder(tf.int32,
-                              shape=[batch_size],
-                              name='train_inputs')  # <-- this
+	    <h3>Run the code</h3>
+	    <small>and wait half an hour...</small>
+	    <pre><code class="js">
+python word2vec_optimized.py \
+  --train_data=text8 \
+  --eval_data=questions-words.txt \
+  --save_path=/tmp/
 	    </code></pre>
 	  </section>
 
-	  
+	  <section data-background="imgs/now-what.gif" data-background-size="75%"></section>
+
+	  <section>
+	    <pre><code class="haskell">
+mkdir tb_files
+		
+cp /tmp/model.ckpt* /tmp/checkpoint /tmp/vocab.txt tb_files
+	    </code></pre>
+	  </section>
+
+	  <section>
+	    <p>Generate <code>metadata.tsv</code> from <code>vocab.txt</code></p>
+	    <small>Keep file in <code>tb_files/</code></small>
+	    <pre><code>
+with open('vocab.txt', 'r') as f_in, \
+     open('metadata.tsv', 'w') as f_out:
+    f_out.write('Word\tCount')
+    for line in f_in:
+        # line = "b'newspaper' 900"
+        w, c = line.split(' ')
+        f_out.write('{}\t{}'.format(w[2:-1], c))
+	    </pre></code>
+	  </section>
+
+	  <section>
+	    <p>Inform TensorBoard about the embedding matrix</p>
+	    <p><code>tb_files/projector_config.pbtxt</code></p>
+	    <pre><code>
+embeddings {
+  tensor_name: "w_in:0"
+  metadata_path: "tb_files/metadata.tsv"
+}
+	    </code></pre>
+	  </section>
+
+	  <section>
+	    <h3>Run TensorBoard</h3>
+	    <pre><code class="haskell">
+tensorboard --logdir=./tb_files
+	    </code></pre>
+	  </section>
+
+	  <section>
+	    <img src="imgs/w2v_oslo.png" />
+	  </section>
+
+	  <section>
+	    <h3>PCA</h3>
+	    <img src="imgs/w2v_pca_oslo.png" width="50%" />
+	  </section>
+
+	  <section>
+	    <h3>t-SNE</h3>
+	    <img src="imgs/w2v_tsne_oslo.png" width="50%" />
+	  </section>
+
 	</section>
       </div>
     </div>
