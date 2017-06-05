@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg5862"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="dists.svg">
+  <defs
+     id="defs5864" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="3.6203867"
+     inkscape:cx="164.36177"
+     inkscape:cy="291.59399"
+     inkscape:document-units="px"
+     inkscape:current-layer="g5871"
+     showgrid="false"
+     inkscape:window-width="1416"
+     inkscape:window-height="1101"
+     inkscape:window-x="1359"
+     inkscape:window-y="114"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata5867">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g5911"
+       transform="translate(91.263584,254.78198)">
+      <g
+         id="g5871">
+        <g
+           id="g6058"
+           transform="matrix(0.56486377,0,0,0.56486377,-7.0685022,266.64762)"
+           inkscape:export-filename="/home/binroot/Dropbox/TensorFlow Book/Drafts/graphics/distl2.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90">
+          <path
+             id="path6020"
+             d="M 209.705,0 H 142.304 74.901 7.5 C 3.357,0 0,3.358 0,7.5 v 67.401 67.402 67.401 c 0,4.142 3.357,7.5 7.5,7.5 h 67.401 67.402 67.401 c 4.143,0 7.5,-3.358 7.5,-7.5 V 142.303 74.901 7.5 C 217.205,3.358 213.848,0 209.705,0 z m -7.5,67.401 H 149.804 V 15 h 52.401 v 52.401 z m 0,67.403 H 149.804 V 82.401 h 52.401 v 52.403 z M 15,82.401 h 52.401 v 52.402 H 15 V 82.401 z m 67.401,0 h 52.402 v 52.402 H 82.401 V 82.401 z M 134.804,15 V 67.401 H 82.401 V 15 h 52.403 z M 67.401,15 V 67.401 H 15 V 15 H 67.401 z M 15,149.804 h 52.401 v 52.401 H 15 v -52.401 z m 67.401,52.401 v -52.401 h 52.402 v 52.401 H 82.401 z m 67.403,0 v -52.401 h 52.401 v 52.401 h -52.401 z"
+             inkscape:connector-curvature="0" />
+          <g
+             id="g6022" />
+          <g
+             id="g6024" />
+          <g
+             id="g6026" />
+          <g
+             id="g6028" />
+          <g
+             id="g6030" />
+          <g
+             id="g6032" />
+          <g
+             id="g6034" />
+          <g
+             id="g6036" />
+          <g
+             id="g6038" />
+          <g
+             id="g6040" />
+          <g
+             id="g6042" />
+          <g
+             id="g6044" />
+          <g
+             id="g6046" />
+          <g
+             id="g6048" />
+          <g
+             id="g6050" />
+        </g>
+        <path
+           sodipodi:type="arc"
+           style="fill:#ececec;stroke:#000000;stroke-opacity:1"
+           id="path6076"
+           sodipodi:cx="107.76367"
+           sodipodi:cy="545.2821"
+           sodipodi:rx="4.7363281"
+           sodipodi:ry="4.7363281"
+           d="m 112.5,545.2821 a 4.7363281,4.7363281 0 1 1 -9.47266,0 4.7363281,4.7363281 0 1 1 9.47266,0 z"
+           transform="matrix(1.7812932,0,0,1.7812932,-156.87067,-661.9974)"
+           inkscape:export-filename="/home/binroot/Dropbox/TensorFlow Book/Drafts/graphics/distl2.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+        <path
+           sodipodi:type="arc"
+           style="fill:#ececec;stroke:#000000;stroke-opacity:1"
+           id="path6076-7"
+           sodipodi:cx="107.76367"
+           sodipodi:cy="545.2821"
+           sodipodi:rx="4.7363281"
+           sodipodi:ry="4.7363281"
+           d="m 112.5,545.2821 a 4.7363281,4.7363281 0 1 1 -9.47266,0 4.7363281,4.7363281 0 1 1 9.47266,0 z"
+           transform="matrix(1.7812932,0,0,1.7812932,-118.51372,-624.16233)"
+           inkscape:export-filename="/home/binroot/Dropbox/TensorFlow Book/Drafts/graphics/distl2.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1.78129315px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 38.828045,316.70294 26.44107,26.61503 4.174906,-4.17491 -26.615031,-26.96293 z"
+           id="path6098"
+           inkscape:connector-curvature="0"
+           inkscape:export-filename="/home/binroot/Dropbox/TensorFlow Book/Drafts/graphics/distl2.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+        <text
+           xml:space="preserve"
+           style="font-size:35.62586212px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Droid Sans Mono;-inkscape-font-specification:Droid Sans Mono"
+           x="78.438759"
+           y="362.98798"
+           id="text6100"
+           sodipodi:linespacing="125%"
+           inkscape:export-filename="/home/binroot/Dropbox/TensorFlow Book/Drafts/graphics/distl2.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90"><tspan
+             sodipodi:role="line"
+             id="tspan6102"
+             x="78.438759"
+             y="362.98798"
+             style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Sans;-inkscape-font-specification:Sans">(1,0)</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Droid Sans Mono;-inkscape-font-specification:Droid Sans Mono"
+           x="1.5441769"
+           y="301.2244"
+           id="text6104"
+           sodipodi:linespacing="125%"
+           inkscape:export-filename="/home/binroot/Dropbox/TensorFlow Book/Drafts/graphics/distl2.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90"><tspan
+             sodipodi:role="line"
+             id="tspan6106"
+             x="1.5441769"
+             y="301.2244"
+             style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Sans;-inkscape-font-specification:Sans">(0,1)</tspan></text>
+        <g
+           id="g6058-6"
+           transform="matrix(0.56486377,0,0,0.56486377,-6.0713355,458.41278)"
+           inkscape:export-filename="/home/binroot/Dropbox/TensorFlow Book/Drafts/graphics/distl1.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90">
+          <path
+             id="path6020-9"
+             d="M 209.705,0 H 142.304 74.901 7.5 C 3.357,0 0,3.358 0,7.5 v 67.401 67.402 67.401 c 0,4.142 3.357,7.5 7.5,7.5 h 67.401 67.402 67.401 c 4.143,0 7.5,-3.358 7.5,-7.5 V 142.303 74.901 7.5 C 217.205,3.358 213.848,0 209.705,0 z m -7.5,67.401 H 149.804 V 15 h 52.401 v 52.401 z m 0,67.403 H 149.804 V 82.401 h 52.401 v 52.403 z M 15,82.401 h 52.401 v 52.402 H 15 V 82.401 z m 67.401,0 h 52.402 v 52.402 H 82.401 V 82.401 z M 134.804,15 V 67.401 H 82.401 V 15 h 52.403 z M 67.401,15 V 67.401 H 15 V 15 H 67.401 z M 15,149.804 h 52.401 v 52.401 H 15 v -52.401 z m 67.401,52.401 v -52.401 h 52.402 v 52.401 H 82.401 z m 67.403,0 v -52.401 h 52.401 v 52.401 h -52.401 z"
+             inkscape:connector-curvature="0" />
+          <g
+             id="g6022-5" />
+          <g
+             id="g6024-6" />
+          <g
+             id="g6026-3" />
+          <g
+             id="g6028-2" />
+          <g
+             id="g6030-3" />
+          <g
+             id="g6032-6" />
+          <g
+             id="g6034-7" />
+          <g
+             id="g6036-6" />
+          <g
+             id="g6038-4" />
+          <g
+             id="g6040-8" />
+          <g
+             id="g6042-1" />
+          <g
+             id="g6044-8" />
+          <g
+             id="g6046-0" />
+          <g
+             id="g6048-3" />
+          <g
+             id="g6050-9" />
+        </g>
+        <path
+           sodipodi:type="arc"
+           style="fill:#ececec;stroke:#000000;stroke-opacity:1"
+           id="path6076-2"
+           sodipodi:cx="107.76367"
+           sodipodi:cy="545.2821"
+           sodipodi:rx="4.7363281"
+           sodipodi:ry="4.7363281"
+           d="m 112.5,545.2821 a 4.7363281,4.7363281 0 1 1 -9.47266,0 4.7363281,4.7363281 0 1 1 9.47266,0 z"
+           transform="matrix(1.7812932,0,0,1.7812932,-155.8735,-470.23224)"
+           inkscape:export-filename="/home/binroot/Dropbox/TensorFlow Book/Drafts/graphics/distl1.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+        <path
+           sodipodi:type="arc"
+           style="fill:#ececec;stroke:#000000;stroke-opacity:1"
+           id="path6076-7-6"
+           sodipodi:cx="107.76367"
+           sodipodi:cy="545.2821"
+           sodipodi:rx="4.7363281"
+           sodipodi:ry="4.7363281"
+           d="m 112.5,545.2821 a 4.7363281,4.7363281 0 1 1 -9.47266,0 4.7363281,4.7363281 0 1 1 9.47266,0 z"
+           transform="matrix(1.7812932,0,0,1.7812932,-117.51655,-432.39714)"
+           inkscape:export-filename="/home/binroot/Dropbox/TensorFlow Book/Drafts/graphics/distl1.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+        <text
+           xml:space="preserve"
+           style="font-size:35.62586212px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Droid Sans Mono;-inkscape-font-specification:Droid Sans Mono"
+           x="79.435928"
+           y="554.75317"
+           id="text6100-6"
+           sodipodi:linespacing="125%"
+           inkscape:export-filename="/home/binroot/Dropbox/TensorFlow Book/Drafts/graphics/distl1.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90"><tspan
+             sodipodi:role="line"
+             id="tspan6102-3"
+             x="79.435928"
+             y="554.75317"
+             style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Sans;-inkscape-font-specification:Sans">(1,0)</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Droid Sans Mono;-inkscape-font-specification:Droid Sans Mono"
+           x="2.5413508"
+           y="492.98956"
+           id="text6104-5"
+           sodipodi:linespacing="125%"
+           inkscape:export-filename="/home/binroot/Dropbox/TensorFlow Book/Drafts/graphics/distl1.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90"><tspan
+             sodipodi:role="line"
+             id="tspan6106-3"
+             x="2.5413508"
+             y="492.98956"
+             style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Sans;-inkscape-font-specification:Sans">(0,1)</tspan></text>
+        <path
+           style="fill:#ececec;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 43.811137,497.86819 33.974269,0 c -0.161125,16.44654 0.02302,21.84389 -0.138107,32.86942 l -6.560072,-0.1381 -0.06905,-26.65461 -26.99988,-0.0691 z"
+           id="path6206"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="ccccccc"
+           inkscape:export-filename="/home/binroot/Dropbox/TensorFlow Book/Drafts/graphics/distl1.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+      </g>
+      <g
+         id="g5875" />
+      <g
+         id="g5877" />
+      <g
+         id="g5879" />
+      <g
+         id="g5881" />
+      <g
+         id="g5883" />
+      <g
+         id="g5885" />
+      <g
+         id="g5887" />
+      <g
+         id="g5889" />
+      <g
+         id="g5891" />
+      <g
+         id="g5893" />
+      <g
+         id="g5895" />
+      <g
+         id="g5897" />
+      <g
+         id="g5899" />
+      <g
+         id="g5901" />
+      <g
+         id="g5903" />
+    </g>
+  </g>
+</svg>
