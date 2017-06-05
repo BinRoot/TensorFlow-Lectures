@@ -33,9 +33,10 @@ document.write('\
 <li class="dropdown">\
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Embeddings <span class="caret"></span></a>\
   <ul class="dropdown-menu">\
-    <li><a href="#">Word2Vec theory</a></li>\
-    <li><a href="#">Word2Vec code</a></li>\
-    <li><a href="#">Word2Vec TensorBoard</a></li>\
+    <li><a href="lec_w2v_paper.html">Word2Vec theory</a></li>\
+    <li><a href="lec_w2v.html">Word2Vec code</a></li>\
+    <li><a href="lec_w2v_tb.html">Word2Vec TensorBoard</a></li>\
+    <li><a href="lec_w2v_optimized.html">Word2Vec optimized</a></li>\
     <li role="separator" class="divider"></li>\
     <li><a href="#">Sense2Vec theory</a></li>\
     <li><a href="#">Sense2Vec code</a></li>\
