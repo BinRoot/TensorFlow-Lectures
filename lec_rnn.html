@@ -59,7 +59,7 @@
           <section>
             <h2>Machine Learning with TensorFlow</h2>
             <p>Lecture 1</p>
-            <p><i>Regression</i></p>
+            <p><i>Recurrent Neural Network</i></p>
 	  </section>
 
 	  <section>
@@ -83,64 +83,34 @@
 
 	    <aside class="notes">Hi there! This is a lecture note. Every slide has a little blurb of text like this!</aside>
 	  </section>
+
 	  
 	  <section>
-	    <h3>Regression input/output</h3>
-	    <img class="plain" src="imgs/ch03_inout.png" />
-	  </section>
-	  	  
-	  <section>
-	    <h3>Data</h3>
-	    <img class="plain" src="imgs/ch03_scatter.png" />
-	    <pre><code class="python">
-x_train = np.linspace(-1, 1, 101)
-y_train = 2 * x_train + np.random.randn(*x_train.shape) * 0.33
-	    </code></pre>
-	  </section>
-
-	  <section>
-	    <h3>Real-world data <small>(<a target="_blank" href="https://www.reddit.com/r/dataisbeautiful/comments/1g7jw2/seinfeld_imdb_episode_ratings_oc/">source</a>)</small></h3>
-	    <img class="plain" src="imgs/seinfeld.png" />
+	    <img src="imgs/ch10_rnn1.png" />
 	  </section>
 	  
 	  <section>
-	    <h3>Exercise</h3>
-	    <p>Ratings are from 1-10, and there are 10 episodes.</p>
-	    <strong>How many possible functions exist that map 10 integers to 10 integers?</strong>
-	    <p>Here's one function: $f(x) = x, ~\forall x \in \{1, 2, ..., 10\}$</p>
-	    <p>Answer: $10^{10} = 10000000000$</p>
+	    <img src="imgs/ch10_rnn2.png" />
+	  </section>
+	  
+	  <section>
+	    <img src="imgs/ch10_rnn3.png" />
 	  </section>
 
 	  <section>
-	    <h3>Model parameters</h3>
-	    <img class="plain" src="imgs/ch03_slopes.png" />
+	    <img src="imgs/ch10_rnn4.png" />
 	  </section>
 
 	  <section>
-	    <h3>Exercise</h3>
-	    <p>Assume the model is $f(x) = wx$.</p>
-	    <strong>How many functions exist for $w\in\{1,...,10\}$?</strong>
-	    <p>Answer: Just 10</p>
+	    <img src="imgs/ch10_data.png" />
 	  </section>
 
 	  <section>
-	    <h3>Overfitting vs. underfitting</h3>
-	    <img class="plain" src="imgs/ch03_fits.png" />
+	    <img src="imgs/ch10_predictions.png" />
 	  </section>
-	  		      
+	  
 	  <section>
-	    <h3>Cost function</h3>
-	    <img class="plain" src="imgs/ch03_cost.png" />
-	  </section>
-
-	  <section>
-	    <h3>Performance</h3>
-	    <img class="plain" src="imgs/ch03_train_test_table.png" />
-	  </section>
-
-	  <section>
-	    <h3>The big picture</h3>
-	    <img class="plain" src="imgs/ch03_mm.png" />
+	    <img src="imgs/ch10_hallucinations.png" />
 	  </section>
 	  
 	  

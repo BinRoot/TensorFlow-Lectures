@@ -13,25 +13,25 @@ document.write('\
 			<div class="collapse navbar-collapse" id="bs-navbar-collapse-1">\
 				<ul class="nav navbar-nav">\
 <li class="dropdown">\
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Getting started <span class="caret"></span></a>\
+  <a href="#" class="dropdown-toggle my-dropdown-getting-started" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Getting started <span class="caret"></span></a>\
   <ul class="dropdown-menu">\
-    <li><a href="#">Machine Learning</a></li>\
-    <li><a href="#">TensorFlow</a></li>\
+    <li><a href="lec_ml.html">Machine Learning</a></li>\
+    <li><a href="lec_tf_intro.html">TensorFlow</a></li>\
     <li><a href="#">TensorBoard</a></li>\
   </ul>\
 </li>\
 <li class="dropdown">\
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Classic algorithms <span class="caret"></span></a>\
+  <a href="#" class="dropdown-toggle my-dropdown-classic-algs" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Classic algorithms <span class="caret"></span></a>\
   <ul class="dropdown-menu">\
-    <li><a href="#">Regression</a></li>\
-    <li><a href="#">Classification</a></li>\
+    <li><a href="lec_reg.html">Regression</a></li>\
+    <li><a href="lec_classification.html">Classification</a></li>\
     <li role="separator" class="divider"></li>\
-    <li><a href="#">Convolutional Neural Networks</a></li>\
-    <li><a href="#">Recurrent Neural Networks</a></li>\
+    <li><a href="lec_cnn.html">Convolutional Neural Networks</a></li>\
+    <li><a href="lec_rnn.html">Recurrent Neural Networks</a></li>\
   </ul>\
 </li>\
 <li class="dropdown">\
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Embeddings <span class="caret"></span></a>\
+  <a href="#" class="dropdown-toggle my-dropdown-embeddings" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Embeddings <span class="caret"></span></a>\
   <ul class="dropdown-menu">\
     <li><a href="lec_w2v_paper.html">Word2Vec theory</a></li>\
     <li><a href="lec_w2v.html">Word2Vec code</a></li>\
@@ -44,7 +44,7 @@ document.write('\
   </ul>\
 </li>\
 <li class="dropdown">\
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Extra <span class="caret"></span></a>\
+  <a href="#" class="dropdown-toggle my-dropdown-extra" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Extra <span class="caret"></span></a>\
   <ul class="dropdown-menu">\
     <li><a href="#">Optimization</a></li>\
     <li><a href="#">TensorFlow Serving</a></li>\
