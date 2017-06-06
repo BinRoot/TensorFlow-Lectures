@@ -85,11 +85,74 @@
 	  </section>
 
 	  <section>
-	    <img src="" />
+	    <img src="imgs/ch09_input_image.png" />
 	  </section>
 
+	  
+	  <section>
+	    <img src="imgs/ch09_cifar_examples.png" />
+	  </section>
 
-		  
+	  <section>
+	    <img class="plain" src="imgs/ch09_fully.png" />
+	  </section>
+	  
+	  <section>
+	    <img class="plain" src="imgs/ch09_conv.png" />
+	  </section>
+
+	  <section>
+	    <h3>Weights</h3>
+	    <img width="60%" src="imgs/ch09_step0_weights.png" />
+	    <pre><code class="haskell">
+w = tf.Variable(tf.random_normal([5, 5, 1, 32]))
+	    </code></pre>
+	  </section>
+
+	  <section>
+	    <h3>Convolution</h3>
+	    <img width="60%" src="imgs/ch09_step1_convs.png" />
+	    <pre><code class="haskell">
+conv = tf.nn.conv2d(x, w, strides=[1, 1, 1, 1], padding='SAME')
+	    </code></pre>
+	  </section>
+
+	  <section>
+	    <h3>ReLu after adding bias</h3>
+	    <img width="60%" src="imgs/ch09_step2_conv_outs.png" />
+	    <pre><code class="haskell">
+conv_with_b = tf.nn.bias_add(conv, b)
+conv_out = tf.nn.relu(conv_with_b)
+	    </code></pre>
+	  </section>
+
+	  <section>
+	    <img class="plain" src="imgs/ch09_maxpool.png" />
+	  </section>
+
+	  
+	  <section>
+	    <h3>Maxpool</h3>
+	    <img width="60%" src="imgs/ch09_step3_maxpool.png" />
+	    <pre><code class="haskell">
+maxpool = tf.nn.max_pool(conv_out,
+                         ksize=[1, k, k, 1],
+                         stride=[1, k, k, 1],
+                         padding='SAME')
+	    </code></pre>
+	  </section>
+
+	  <section>
+	    <h3>Tips and tricks</h3>
+	    <ul>
+	      <li>Augment data</li>
+	      <li>Early stopping</li>
+	      <li>Regularize weights</li>
+	      <li>Dropout</li>
+	      <li>Deeper</li>
+	    </ul>
+	  </section>
+
 	  
 	</section>
       </div>
