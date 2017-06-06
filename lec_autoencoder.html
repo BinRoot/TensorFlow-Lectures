@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>TensorFlow - Lecture 1</title>
+
+    <meta name="description" content="A course on the world's fastest growing machine learning library, TensorFlow">
+    <meta name="author" content="Nishant Shukla">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/serif.css" id="theme">
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+
+    <style>
+      body {
+      padding-top: 30px;
+      padding-bottom: 40px;
+      }
+    </style>
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="css/pojoaque.css">
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+      document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+    </script>
+
+    <script src="js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+
+
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+  </head>
+
+
+  <body>
+
+    <script src="js/nav.js"></script>
+
+    <script>
+      function toggleElements(one, two) {
+      document.getElementById(one).style.display = 'none';
+      document.getElementById(two).style.display = 'block';
+      }
+    </script>
+
+
+    <div class="reveal">
+
+      <!-- Slides begin here! -->
+      <div class="slides">
+	<section>
+
+          <section>
+            <h2>Machine Learning with TensorFlow</h2>
+            <p>Lecture 1</p>
+            <p><i>Autoencoder</i></p>
+	  </section>
+
+	  <section>
+	    <h3>Using These Slides</h3>
+	    <center>
+	      <table width="80%">
+		<tr>
+		  <td><code>↓</code>, <code>PgDn</code>, <code>n</code>, <code>j</code></td>
+		  <td>next slide</td>
+		</tr>
+		<tr>
+		  <td><code>↑</code>, <code>PgUp</code>, <code>p</code>, <code>k</code></td>
+		  <td>prev slide</td>
+		</tr>
+		<tr>
+		  <td><code>Esc</code></td>
+		  <td>enables <code>ctrl+f</code> globally</td>
+		</tr>
+	      </table>
+	    </center>
+
+	    <aside class="notes">Hi there! This is a lecture note. Every slide has a little blurb of text like this!</aside>
+	  </section>
+
+	  <section>
+	    <h3>Linear function</h3>
+	    <img class="plain" src="imgs/ch08_nn1.png" />
+	  </section>
+
+	  <section>
+	    <h3>Nonlinear function</h3>
+	    <img class="plain" src="imgs/ch08_nn2.png" />
+	  </section>
+	  
+	  <section>
+	    <h3>Two-input, nonlinear function</h3>
+	    <img class="plain" src="imgs/ch08_nn3.png" />
+	  </section>
+	  
+	  <section>
+	    <h3>Multi-input, nonlinear function</h3>
+	    <img class="plain" src="imgs/ch08_nn4.png" />
+	  </section>
+	  
+	  <section>
+	    <h3>Deeper neural network</h3>
+	    <img class="plain" src="imgs/ch08_nn6.png" />
+	  </section>
+
+	  <section>
+	    <h3>Autoencoder (trivial)</h3>
+	    <img class="plain" src="imgs/ch08_nn_ae.png" />
+	  </section>
+
+	  <section>
+	    <h3>Autoencoder</h3>
+	    <img class="plain" src="imgs/ch08_nn5.png" />
+	  </section>
+
+
+	  
+	</section>
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    
+    <script>
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+      controls: true,
+      progress: true,
+      history: true,
+      center: true,
+      mouseWheel: true,
+      rollingLinks: false,
+      showNotes: true,
+
+      theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+      transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+      // Optional libraries used to extend on reveal.js
+      dependencies: [
+      { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      // { src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+      { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+      // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+      { src: 'plugin/math/math.js', async: true }
+      ]
+      });
+
+    </script>
+
+    <script>window.jQuery || document.write('<script src="js/jquery-3.2.1.min.js"><\/script>')</script>
+      <script src="js/bootstrap.min.js"></script>
+
+      <script>
+	Reveal.addEventListener( 'slidechanged', function( event ) {
+	// event.previousSlide, event.currentSlide, event.indexh, event.indexv
+	var notes = event.currentSlide.querySelector(".notes");
+	if(notes) {
+        console.info("---");
+        console.info(notes.innerHTML.replace(/\n\s+/g,'\n'));
+	}
+	} );
+      </script>
+
+      <script src="js/main.js"></script>
+  </body>
+</html>

@@ -26,8 +26,9 @@ document.write('\
     <li><a href="lec_reg.html">Regression</a></li>\
     <li><a href="lec_classification.html">Classification</a></li>\
     <li role="separator" class="divider"></li>\
-    <li><a href="lec_cnn.html">Convolutional Neural Networks</a></li>\
-    <li><a href="lec_rnn.html">Recurrent Neural Networks</a></li>\
+    <li><a href="lec_autoencoder.html">Autoencoder</a></li>\
+    <li><a href="lec_cnn.html">Convolutional Neural Network</a></li>\
+    <li><a href="lec_rnn.html">Recurrent Neural Network</a></li>\
   </ul>\
 </li>\
 <li class="dropdown">\
