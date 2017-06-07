@@ -39,7 +39,7 @@ document.write('\
     <li><a href="lec_w2v_tb.html">Word2Vec TensorBoard</a></li>\
     <li><a href="lec_w2v_optimized.html">Word2Vec optimized</a></li>\
     <li role="separator" class="divider"></li>\
-    <li><a href="#">Sense2Vec theory</a></li>\
+    <li><a href="lec_sense2vec_paper.html">Sense2Vec theory</a></li>\
     <li><a href="#">Sense2Vec code</a></li>\
     <li><a href="#">Sense2Vec TensorBoard</a></li>\
   </ul>\
