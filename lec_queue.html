@@ -59,7 +59,7 @@
           <section>
             <h2>Machine Learning with TensorFlow</h2>
             <p>Lecture 1</p>
-            <p><i>TensorFlow Basics</i></p>
+            <p><i>Coordinator and QueueRunner</i></p>
 	  </section>
 
 	  <section>
@@ -85,206 +85,173 @@
 	  </section>
 
 	  <section>
-	    <h3>Example data</h3>
-	    <table>
-	      <tr>
-		<th>Item</th>
-		<th align="right">Price</th>
-		<th align="right">Amount</th>
-	      </tr>
-	      <tr>
-		<td>Thinkpad</td>
-		<td align="right">$2000</td>
-		<td align="right">4</td>
-	      </tr>
-	      <tr>
-		<td>Pixel XL</td>
-		<td align="right">$800</td>
-		<td align="right">10</td>
-	      </tr>
-	      <tr>
-		<td>Nintendo Switch</td>
-		<td align="right">$400</td>
-		<td align="right">13</td>
-	      </tr>
-	      <tr>
-		<td>...</td>
-		<td align="right">...</td>
-		<td align="right">...</td>
-	      </tr>
-	    </table>
+	    <p><code>QueueRunner</code>: Creates threads that enqueue</p>
+	    <p><code>Coordinator</code>: Let's you know when all threads have stop</p>
 	  </section>
-	  
+
 	  <section>
-	    <h3>Native Python code</h3>
-	    
+	    <h3><a target="_blank" href="https://www.tensorflow.org/api_guides/python/io_ops#Queues">Queue</a></h3>
+	    <img class="plain" src="imgs/queue.png" />
+	    <ul>
+	      <li><code>tf.FIFOQueue</code></li>
+	      <li><code>tf.RandomShuffleQueue</code></li>
+	      <li><code>tf.PaddingFIFOQueue</code></li>
+	      <li><code>tf.PriorityQueue</code></li>
+	    </ul>
+	  </section>
+
+	  <section>
+	    <h3>Queue constructor</h3>
 	    <pre><code class="python">
-revenue = 0
-for price, amount in zip(prices, amounts):
-    revenue += price * amount
+__init__(
+    capacity,
+    dtypes,
+    shapes=None,
+    names=None,
+    shared_name=None,
+    name='fifo_queue'
+)
 	    </code></pre>
 	  </section>
 
 	  <section>
-	    <h3>NumPy equivalent</h3>
+	    <h3>Import relevant libraries</h3>
+	    <pre><code>
+import tensorflow as tf
+import numpy as np
+	    </code></pre>
 
 	    <pre><code>
-import numpy as np		
-	    </code></pre>
-
-	    <pre><code class="haskell">
-revenue = np.dot(prices, amounts)
+import multiprocessing
+NUM_THREADS = multiprocessing.cpu_count()
 	    </code></pre>
 
 	  </section>
 
 	  <section>
-	    <h3>TensorFlow equivalent</h3>
-	    
+	    <h3>Fabricate data</h3>
+	    <pre><code class="haskell">
+xs = np.random.randn(100, 3)
+ys = np.random.randint(0, 2, size=100)
+	    </code></pre>
+
 	    <pre><code>
-import tensorflow as tf		
+Input [ 1.46034759  0.71462742  0.73288402]  ---&gt;  Output 0
+Input [ 1.1537654  -0.09128405  0.08036941]  ---&gt;  Output 1
+Input [-0.61164559 -0.19188485  0.06064167]  ---&gt;  Output 0
+Input [ 0.1007337   0.34815357  0.24346031]  ---&gt;  Output 0
+Input [-1.25581117  1.44738085  1.15035257]  ---&gt;  Output 0
 	    </code></pre>
+	  </section>
 
+	  <section>
+	    <h3>Define a queue</h3>
+	    <pre><code class="haskell">	
+queue = tf.FIFOQueue(capacity=1000,
+                     dtypes=[tf.float32, tf.int32])
+	    </code></pre>
+	  </section>
+
+	  <section>
+	    <h3>Set up queue ops</h3>
 	    <pre><code class="haskell">
-revenue = tf.tensordot(prices, amounts, 1)
+enqueue_op = queue.enqueue_many([xs, ys])
+x_op, y_op = queue.dequeue()
 	    </code></pre>
+	  </section>
 
+	  <section>
+	    <h3>Define a QueueRunner</h3>
 	    <pre><code class="haskell">
-sess = tf.Session()
-revenue_val = sess.run(revenue)
+qr = tf.train.QueueRunner(queue, [enqueue_op] * NUM_THREADS)
 	    </code></pre>
-	    
-	  </section>
-	  
-	  <section>
-	    <img src="imgs/tf_session.png" />
 	  </section>
 
 	  <section>
-	    <img src="imgs/mental_model.png" />
-	  </section>
-
-	  <section>
-	    <h3>Session management</h3>
-	    <p>Make sure to close the session when done:</p>
+	    <h3>Create threads</h3>
 	    <pre><code class="haskell">
-sess = tf.Session()
-sess.run(...)
-sess.close()
+sess = tf.InteractiveSession()	
+coord = tf.train.Coordinator()
+enqueue_threads = qr.create_threads(sess,
+                                    coord=coord,
+                                    start=True)
 	    </code></pre>
-	    <p>Or better yet, just use a context manager:</p>
+	  </section>
+
+	  <section>
+	    <h3>Try out dequeuing</h3>
+	    <pre><code class="python">
+for _ in range(100):
+    if coord.should_stop():
+        break
+    x, y = sess.run([x_op, y_op])
+    print(x, y)
+coord.request_stop()
+coord.join(enqueue_threads)
+	    </code></pre>
+	  </section>
+
+	  <section>
+	    <a href="https://github.com/BinRoot/TensorFlow-Book/blob/master/ch02_basics/Concept09_queue.ipynb" target="_blank">Click here for full code</a>
+	  </section>
+
+	  <section>
+	    <h3>Reader classes</h3>
+	    <ul>
+	      <li><code>tf.TextLineReader</code></li>
+	      <li><code>tf.WholeFileReader</code></li>
+	      <li><code>tf.TFRecordReader</code></li>
+	      <li><code>tf.FixedLengthRecordReader</code></li>
+	    </ul>
+	  </section>
+
+	  <section>
+	    <h3>Download corpus</h3>
+	    <pre><code class="bash">
+$ wget http://norvig.com/big.txt
+	    </code></pre>
+	  </section>
+
+	  <section>
+	    <h3>Create a queue of filenames</h3>
+	    <pre><code class="python">
+import tensorflow as tf
+	    </code></pre>
 	    <pre><code class="haskell">
-with tf.Session() as sess:
-    sess.run(...)
+filename_queue = tf.train.string_input_producer(["big.txt"])
 	    </code></pre>
-
+	      
 	  </section>
 
 	  <section>
-	    <h3>Matrix</h3>
-	    <img class="plain" src="imgs/tf_matrix.png" />
-	  </section>
-
-	  <section>
-	    <h3>Tensor</h3>
-	    <img class="plain" src="imgs/tf_tensor.png" />
-	  </section>
-
-	  <section>
-	    <pre><code class="python">
-m1 = tf.constant([[1., 2.]])
-
-print(m1)
-	    </code></pre>
-
-	    <p>Output:</p>
-	    <pre><code class="python">
-Tensor( "Const:0",
-        shape=TensorShape([Dimension(1), Dimension(2)]),
-        dtype=float32 )
-	    </code></pre>
-	    
-	  </section>
-
-	  <section>
-	    <pre><code class="python">
-m2 = tf.constant([[1],
-                  [2]])
-	    </code></pre>
-
-	    <p>Output:</p>
-	    <pre><code class="python">
-Tensor( "Const_1:0",
-        shape=TensorShape([Dimension(2), Dimension(1)]),
-        dtype=int32 )
-	    </code></pre>
-
-		
-	  </section>
-
-	  <section>
-	    <pre><code class="python">
-m3 = tf.constant([ [[1,2],
-                    [3,4],
-                    [5,6]],
-                   [[7,8],
-                    [9,10],
-                    [11,12]] ])
-	    </code></pre>
-	    
-	    <p>Output:</p>
-	    <pre><code class="python">
-Tensor( "Const_2:0",
-        shape=TensorShape([Dimension(2),
-                           Dimension(3),
-                           Dimension(2)]),
-        dtype=int32 )
+	    <h3>Define dequeue op</h3>
+	    <pre><code class="haskell">
+reader = tf.TextLineReader()
+key_op, value_op = reader.read(filename_queue)
 	    </code></pre>
 	  </section>
 
 	  <section>
-	    <p>Create variables:</p>
-	    <pre><code class="python" data-trim>
-weights = tf.Variable(tf.random_normal([784, 200], stddev=0.35),
-                      name="weights")
-biases = tf.Variable(tf.zeros([200]), name="biases")
-	    </code></pre>
-
-	    <p>Create an op to initialize variables:</p>
-	    <pre><code class="python" data-trim>
-init_op = tf.global_variables_initializer()
-	    </code></pre>
-
-	    <p>Initialize and use:</p>
-	    <pre><code class="python" data-trim>
-with tf.Session() as sess:
-  # Run the init operation.
-  sess.run(init_op)
-  # Use the model
+	    <h3>Start queue runners</h3>
+	    <pre><code class="haskell">
+sess = tf.InteractiveSession()
+coord = tf.train.Coordinator()
+threads = tf.train.start_queue_runners(coord=coord)
 	    </code></pre>
 	  </section>
 
 	  <section>
-	    <h3>Jupyter Notebook</h3>
-	    <pre><code class="python">
-$ jupyter notebook		
+	    <h3>Read lines from file</h3>
+	    <pre><code>
+for i in range(100):
+    key, value = sess.run([key_op, value_op])
+    print(key, value)
 	    </code></pre>
-	    <p>Navigate to <a target="_blank" href="http://localhost:8888">http://localhost:8888</a></p>
 	  </section>
 
 	  <section>
-	    <img src="imgs/jupyter.png" />
+	    <a href="https://github.com/BinRoot/TensorFlow-Book/blob/master/ch02_basics/Concept10_queue_text.ipynb" target="_blank">TensorFlow queue text example code</a>
 	  </section>
-
-	  <section>
-	    <img src="imgs/jupyter_celltype.png" />
-	  </section>
-
-	  <section>
-	    <img src="imgs/jupyter_notebook.png" />
-	    <aside class="notes">Do you notice something wrong with the code? Hint: some TensorFlow ops have changed names over time. This screenshot was taken in 2016.</aside>
-	  </section>
-
 	  
 	</section>
       </div>
