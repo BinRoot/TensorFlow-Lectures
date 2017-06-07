@@ -9,7 +9,7 @@ var dropdown_dict = {
     'my-dropdown-getting-started': ['lec_ml', 'lec_tf_intro', 'lec_tf_install', 'lec_tb'],
     'my-dropdown-classic-algs': ['lec_reg', 'lec_class', 'lec_cnn', 'lec_rnn', 'lec_autoencoder'],
     'my-dropdown-embeddings': ['lec_w2v_paper', 'lec_w2v.html', 'lec_w2v_tb', 'lec_w2v_optimized', 'lec_sense2vec_paper'],
-    'my-dropdown-extra': ['lec_serving']
+    'my-dropdown-extra': ['lec_queue', 'lec_serving']
 };
 var break_out = false;
 for (var dropdown_name in dropdown_dict) {
