@@ -243,9 +243,101 @@ Tensor( "Const_2:0",
 	  </section>
 
 	  <section>
+	    <h3>Initialize zero tensor</h3>
+	    <pre><code class="haskell" data-noescape>
+x = <mark>tf.zeros</mark>([2, 3], tf.float32)
+
+sess = tf.Session()
+sess.run(x)
+	    </code></pre>
+	    <p>Output:</p>
+	    <pre><code class="python">
+array([[ 0.,  0.,  0.],
+       [ 0.,  0.,  0.]], dtype=float32)	
+	    </code></pre>
+	  </section>
+
+	  <section>
+	    <h3>Initialize zero tensor like another</h3>
+	    <pre><code class="haskell" data-noescape>
+y = [[1, 2, 3], [4, 5, 6]]
+z = tf.<mark>zeros_like</mark>(y, tf.float32)
+
+sess = tf.Session()
+sess.run(z)
+	    </code></pre>
+	    <p>Output:</p>
+	    <pre><code class="python">
+array([[ 0.,  0.,  0.],
+       [ 0.,  0.,  0.]], dtype=float32)	
+	    </code></pre>
+	  </section>
+
+	  <section>
+	    <h3>Initialize ones tensor</h3>
+	    <pre><code class="haskell" data-noescape>
+x = <mark>tf.ones</mark>([2, 3], tf.float32)
+
+sess = tf.Session()
+sess.run(x)
+	    </code></pre>
+	    <p>Output:</p>
+	    <pre><code class="python">
+array([[ 1.,  1.,  1.],
+       [ 1.,  1.,  1.]], dtype=float32)	
+	    </code></pre>
+	  </section>
+
+	  <section>
+	    <h3>Initialize ones tensor like another</h3>
+	    <pre><code class="haskell" data-noescape>
+y = [[1, 2, 3], [4, 5, 6]]
+z = <mark>tf.ones_like</mark>(y, tf.float32)
+
+sess = tf.Session()
+sess.run(z)
+	    </code></pre>
+	    <p>Output:</p>
+	    <pre><code class="python">
+array([[ 1.,  1.,  1.],
+       [ 1.,  1.,  1.]], dtype=float32)	
+	    </code></pre>
+	  </section>
+
+	  <section>
+	    <h3>Initialize constant tensor</h3>
+	    <pre><code class="haskell" data-noescape>
+x = <mark>tf.fill</mark>([2, 3], 0.1)
+
+sess = tf.Session()
+sess.run(z)
+	    </code></pre>
+	    <p>Output:</p>
+	    <pre><code class="python">
+array([[ 0.1,  0.1,  0.1],
+       [ 0.1,  0.1,  0.1]], dtype=float32)	
+	    </code></pre>
+	  </section>
+
+	  <section>
+	    <h3>Other useful ops</h3>
+	    <small>
+	    <ul>
+	      <li><code>tf.linspace(0., 100., 11)</code></li>
+	      <li><code>tf.range(1, 10)</code></li>
+	      <li><code>tf.random_normal([2, 3])</code></li>
+	      <li><code>tf.truncated_normal([2, 3])</code></li>
+	      <li><code>tf.random_uniform([2, 3])</code></li>
+	    </ul>
+	    </small>
+	  </section>
+	  
+	  
+	  <section>
 	    <p>Create variables:</p>
 	    <pre><code class="python" data-trim>
-weights = tf.Variable(tf.random_normal([784, 200], stddev=0.35),
+weights = tf.Variable(tf.random_normal([784, 200],
+                                       stddev=0.35),
                       name="weights")
 biases = tf.Variable(tf.zeros([200]), name="biases")
 	    </code></pre>
@@ -258,9 +350,37 @@ init_op = tf.global_variables_initializer()
 	    <p>Initialize and use:</p>
 	    <pre><code class="python" data-trim>
 with tf.Session() as sess:
-  # Run the init operation.
   sess.run(init_op)
-  # Use the model
+	    </code></pre>
+	  </section>
+
+	  <section>
+	    <h3>TensorFlow code guideline</h3>
+	    <p>Your code should follow this order:</p>
+	    <ol>
+	      <li><strong>Imports</strong></li>
+	      <li><strong>Constants</strong> <i>(hyper-parameters)</i></li>
+	      <li><strong>Placeholders</strong> <i>(input and output examples)</i></li>
+	      <li><strong>Variables</strong> <i>(model parameters)</i></li>
+	      <li><strong>Ops</strong> <i>(loss function and optimizer)</i></li>
+	      <li><strong>Session evals</strong></li>
+	    </ol>
+	  </section>
+
+	  <section>
+	    <h3>What's wrong with this code?</h3>
+	    <pre><code class="haskell">
+x = tf.constant(1)
+y = tf.constant(2)
+	    </code></pre>
+
+	    <pre><code class="haskell">
+sess = tf.Session()
+	    </code></pre>
+	    
+	    <pre><code>
+for _ in range(10000):
+    sess.run(tf.add(x, y))
 	    </code></pre>
 	  </section>
 
