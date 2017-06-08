@@ -49,8 +49,7 @@ document.write('\
   <a href="#" class="dropdown-toggle my-dropdown-extra" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Extra <span class="caret"></span></a>\
   <ul class="dropdown-menu">\
     <li><a href="lec_queue.html">Queue</a></li>\
-    <li><a href="#">Optimization</a></li>\
-    <li><a href="#">TensorFlow Serving</a></li>\
+    <li><a href="lec_serving.html">TensorFlow Serving</a></li>\
   </ul>\
 </li>\
 				</ul>\

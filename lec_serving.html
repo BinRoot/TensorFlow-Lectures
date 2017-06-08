@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>TensorFlow - Lecture 1</title>
+
+    <meta name="description" content="A course on the world's fastest growing machine learning library, TensorFlow">
+    <meta name="author" content="Nishant Shukla">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/serif.css" id="theme">
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+
+    <style>
+      body {
+      padding-top: 30px;
+      padding-bottom: 40px;
+      }
+    </style>
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="css/pojoaque.css">
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+      document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+    </script>
+
+    <script src="js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+
+
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+  </head>
+
+
+  <body>
+
+    <script src="js/nav.js"></script>
+
+    <script>
+      function toggleElements(one, two) {
+      document.getElementById(one).style.display = 'none';
+      document.getElementById(two).style.display = 'block';
+      }
+    </script>
+
+
+    <div class="reveal">
+
+      <!-- Slides begin here! -->
+      <div class="slides">
+	<section>
+
+          <section>
+            <h2>Machine Learning with TensorFlow</h2>
+            <p>Lecture 1</p>
+            <p><i>TensorFlow Serving</i></p>
+	  </section>
+
+	  <section>
+	    <h3>Using These Slides</h3>
+	    <center>
+	      <table width="80%">
+		<tr>
+		  <td><code>↓</code>, <code>PgDn</code>, <code>n</code>, <code>j</code></td>
+		  <td>next slide</td>
+		</tr>
+		<tr>
+		  <td><code>↑</code>, <code>PgUp</code>, <code>p</code>, <code>k</code></td>
+		  <td>prev slide</td>
+		</tr>
+		<tr>
+		  <td><code>Esc</code></td>
+		  <td>enables <code>ctrl+f</code> globally</td>
+		</tr>
+	      </table>
+	    </center>
+
+	    <aside class="notes">Hi there! This is a lecture note. Every slide has a little blurb of text like this!</aside>
+	  </section>
+
+	  <section>
+	    <h3>TensorFlow Serving</h3>
+	    <a target="_blank" href="https://tensorflow.github.io/serving/"><img width="40%" class="plain" src="imgs/tf_serving.svg" /></a>
+	  </section>
+
+	  
+	  <section>
+	    <h3>Some new words:</h3>
+	    <ul>
+	      <li>Servables</li>
+	      <li>Loaders</li>
+	      <li>Sources</li>
+	      <li>Managers</li>
+	      <li>Core</li>
+	    </ul>
+	  </section>
+
+	  <section data-background="imgs/radio_interface.jpg">
+	    <h1><font color="#fd8">Servables</font></h1>
+	    <br><br><br><br><br>
+	  </section>
+
+	  <section>
+	    <h3>Servables</h3>
+	    <p>They are the primary <strong>interface</strong> to the client.</p>
+	    <p>They have version numbers!</p>
+	  </section>
+
+	  <section>
+	    <h3>Loaders</h3>
+	    <img src="imgs/radio_install.jpg" />
+	    <p>Manage servable's life cycle</p>
+	    <p>User does not interface with it</p>
+	  </section>
+
+	  <section data-background="imgs/radio_studio.jpg">
+	    <h1><font color="#eee">Sources</font></h1>
+	    <br><br><br><br><br>
+	  </section>
+
+	  <section>
+	    <h3>Sources</h3>
+	    <p>Supplies a Loader</p>
+	    <p><i>e.g.</i> poll a file system</p>
+	  </section>
+
+	  <section data-background="imgs/car_engine.jpg">
+	    <h1><font color="#ffe">Manager</font></h1>
+	  </section>
+
+	  <section>
+	    <h3>Manager</h3>
+	    <ul>
+	      <li>load Servables</li>
+	      <li>serve Servables</li>
+	      <li>unload Servables</li>
+	    </ul>
+	  </section>
+
+	  <section>
+	    <img class="plain" src="imgs/serving_architecture.svg" />
+	  </section>
+
+	  <section>
+	    <h3>Install TensorFlow Serving</h3>
+	    <p><a target="_blank" href="https://tensorflow.github.io/serving/setup#prerequisites">See official installation instructions</a></p>
+	    <ol>
+	      <li>Install Bazel</li>
+	      <li>Install gRPC</li>
+	      <li>Install remaining dependencies</li>
+	      <li>Install from source</li>
+	    </ol>
+	  </section>
+	  
+	  <section>
+	    <h3>Install Bazel</h3>
+	    <p>Pretty easy on Ubuntu:</p>
+	    <pre><code data-trim class="bash">
+$ echo "deb [arch=amd64] http://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
+	    </code></pre>
+	    <pre><code data-trim class="bash">
+$ curl https://bazel.build/bazel-release.pub.gpg | \
+sudo apt-key add- 
+	    </code></pre>
+	    <pre><code data-trim class="bash">
+$ sudo apt-get update && sudo apt-get install bazel
+	    </code></pre>
+	    <pre><code data-trim class="bash">
+$ sudo apt-get upgrade bazel
+	    </code></pre>
+	  </section>
+
+	  <section>
+	    <h3>Install gRPC</h3>
+	    <pre><code class="bash">
+$ pip install grpcio		
+	    </code></pre>
+	  </section>
+
+	  <section>
+	    <h3>Install other dependencies</h3>
+	    <pre><code class="bash">
+$ sudo apt-get update && sudo apt-get install -y \
+    build-essential \
+    curl \
+    libcurl3-dev \
+    git \
+    libfreetype6-dev \
+    libpng12-dev \
+    libzmq3-dev \
+    pkg-config \
+    python-dev \
+    python-numpy \
+    python-pip \
+    software-properties-common \
+    swig \
+    zip \
+    zlib1g-dev
+	    </code></pre>
+	  </section>
+
+	  <section>
+	    <h3>Install TensorFlow Serving</h3>
+	    <pre><code class="bash">
+$ git clone --recurse-submodules \
+https://github.com/tensorflow/serving
+	    </code></pre>
+	    <pre><code class="bash">
+$ cd serving/tensorflow
+
+$ virtualenv --system-site-packages \
+-p python3 ~/tensorflow-serving
+
+$ source ~/tensorflow-serving/bin/activate
+
+$ ./configure
+
+$ cd ..
+	    </code></pre>
+
+	  </section>
+
+	  <section>
+	    <h3>Build TensorFlow Serving</h3>
+	    <p>Will take longer than 10 minutes...</p>
+	    <pre><code class="bash">
+$ bazel build tensorflow_serving/...
+	    </code></pre>
+	    <p>Did it work?</p>
+	    <pre><code class="bash">
+$ bazel test tensorflow_serving/...
+	    </code></pre>
+	  </section>
+
+	  <section>
+	    <h3></h3>
+	    <img class="plain" src="imgs/serving_tests.png" />
+	  </section>
+
+	  <section data-background="imgs/feels_good.gif">
+	    <h2><font color="white">When your test cases pass...</font></h2>
+	  </section>
+
+	  <section>
+	    <h3></h3>
+	    <pre><code class="bash">
+$ bazel build //tensorflow_serving/example:mnist_saved_model
+
+$ bazel-bin/tensorflow_serving/example/mnist_saved_model \
+/tmp/mnist_model
+	    </code></pre>
+	    <p><small><a href="https://github.com/tensorflow/serving/issues/421" target="_blank">(in case your get a NotFoundError)</a></small></p>
+	  </section>
+
+	  <section>
+	    <img class="plain" src="imgs/serving_tmp_dir.png" />
+	  </section>
+
+	  <section>
+	    <h3>Run the Model Server</h3>
+	    <pre><code class="bash">
+$ bazel build \
+//tensorflow_serving/model_servers:tensorflow_model_server
+		
+$ bazel-bin/tensorflow_serving/model_servers/tensorflow_model_server \
+--port=9000 \
+--model_name=mnist \
+--model_base_path=/tmp/mnist_model/
+	    </code></pre>
+	  </section>
+
+	  <section>
+	    <h3>Test it out</h3>
+	    <pre><code class="bash">
+$ bazel build //tensorflow_serving/example:mnist_client
+
+$ bazel-bin/tensorflow_serving/example/mnist_client \
+--num_tests=1000 --server=localhost:9000
+	    </code></pre>
+	    <p><small>(in case your get an ImportError: <code>pip2 install grpcio</code>)</small></p>
+	  </section>
+	  
+	  <section>
+	    <p><i>Image attributions</i></p>
+	    <small>
+	    <ul>
+	    <li><i><a target="_blank" href="https://www.flickr.com/photos/calliope/8039277170/in/photolist-dfpp25-4Vgq1L-bnP1C8-5q3BYW-auDLVq-ysjqX-fZS1RP-4UW8wq-5RJYa3-4Vj1cp-iehdB-batBCK-46X9er-7GaDRY-hAMwhN-bPNCD4-newH-6mZJYM-GNPin-5rir7Z-SUNMeA-6zD96W-qYchJ-4ZzAV-2RpcHr-5UsgiC-9tjHgR-p7Ho8t-5rTR49-2Uwmtv-A7diF-9M8hkv-9qCcjX-6WwoT4-eSwjZW-ds56HX-mHkwPp-oz58Lf-CHR6p-9CXmFa-ojBNhn-nN8Vpa-mHkqDk-4Vpvbp-kiGgVr-5JGY4m-ojAX5s-oATM2L-oigNpk-q9chTw">Image of radio</a></i></li>
+	    <li><i><a target="_blank" href="https://www.flickr.com/photos/saiberiac/4706367818/in/photolist-8aTnbJ-zHKbNj-BbbUrP-8ucW3G-gdRm78-nw6Gjy-jxRjAA-2MSbio-brkXwR-8u9Qre-5qvNQo-cgDa9b-zSxwJH-9P79P-cr7csu-61v2Qw-axDkBF-bqvEas-byCKzG-dweqxQ-3wGZA1-gvBR3-cxmsP3-xTXRK-e7KqyU-86nVvX-nkvred-gqy6ri-dnr4ah-fbU2V2-7neGH5-6HHBHS-db64AE-4DCFsD-e2cYdZ-9ep7XY-fMMvxq-bMxstT-fMMs9A-9td6mG-dp53Cn-nvx4gm-hgLRF2-pwnd8v-8e6BJL-9WUKPk-9Fo8zX-nnA2Ws-qBNgBb-6F4Ebt">Image of car engine</a></i></li>
+	    <li><i><a target="_blank" href="https://www.crutchfield.com/S-VTIq7KilOt5/learn/learningcenter/car/satellite_radio_installation_guide.html">Image of radio installation</a></i></li>
+	    <li><i><a target="_blank" href="https://www.crutchfield.com/S-VTIq7KilOt5/learn/learningcenter/car/satellite_radio_installation_guide.html">Image of radio studio</a></i></li>
+	    </ul>
+	    </small>
+	  </section>
+	  
+	</section>
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    
+    <script>
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+      controls: true,
+      progress: true,
+      history: true,
+      center: true,
+      mouseWheel: true,
+      rollingLinks: false,
+      showNotes: true,
+
+      theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+      transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+      // Optional libraries used to extend on reveal.js
+      dependencies: [
+      { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      // { src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+      { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+      // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+      { src: 'plugin/math/math.js', async: true }
+      ]
+      });
+
+    </script>
+
+    <script>window.jQuery || document.write('<script src="js/jquery-3.2.1.min.js"><\/script>')</script>
+      <script src="js/bootstrap.min.js"></script>
+
+      <script>
+	Reveal.addEventListener( 'slidechanged', function( event ) {
+	// event.previousSlide, event.currentSlide, event.indexh, event.indexv
+	var notes = event.currentSlide.querySelector(".notes");
+	if(notes) {
+        console.info("---");
+        console.info(notes.innerHTML.replace(/\n\s+/g,'\n'));
+	}
+	} );
+      </script>
+
+      <script src="js/main.js"></script>
+  </body>
+</html>
