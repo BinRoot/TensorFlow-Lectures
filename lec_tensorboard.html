@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 
-    <title>TensorFlow - Lecture 1</title>
+    <title>MLTF: TensorBoard</title>
 
     <meta name="description" content="A course on the world's fastest growing machine learning library, TensorFlow">
     <meta name="author" content="Nishant Shukla">
@@ -58,8 +58,8 @@
 
           <section>
             <h2>Machine Learning with TensorFlow</h2>
-            <p>Lecture 1</p>
-            <p><i>Convolutional Neural Networks</i></p>
+            <p>Lecture 5</p>
+            <p><i>TensorBoard</i></p>
 	  </section>
 
 	  <section>
@@ -87,72 +87,79 @@
 	  </section>
 
 	  <section>
-	    <img src="imgs/ch09_input_image.png" />
-	  </section>
-
-	  
-	  <section>
-	    <img src="imgs/ch09_cifar_examples.png" />
-	  </section>
-
-	  <section>
-	    <img class="plain" src="imgs/ch09_fully.png" />
+	    <h3><code>tf.summary.scalar</code></h3>
+	    <img src="imgs/tb_scalar.png" />
 	  </section>
 	  
 	  <section>
-	    <img class="plain" src="imgs/ch09_conv.png" />
+	    <h3><code>tf.summary.image</code></h3>
+	    <img class="plain" src="imgs/vae_original.png" />
+	    <img class="plain" src="imgs/vae_reconstructed.png" />
 	  </section>
 
 	  <section>
-	    <h3>Weights</h3>
-	    <img width="60%" src="imgs/ch09_step0_weights.png" />
+	    <h1>Step 1</h1>
+	    <p>Annotate nodes with summary ops</p>
+	  </section>
+	  
+	  <section data-background-image="imgs/clifford.jpg" data-background-size="70%">
+	  </section>
+
+	  <section>
+	    <p>Here's data you might want to visualize:</p>
 	    <pre><code class="haskell">
-w = tf.Variable(tf.random_normal([5, 5, 1, 32]))
+img = tf.placeholder(tf.float32, [None, None, None, 3])
+cost = tf.reduce_sum(...)
+	    </code></pre>
+	    <br>
+	    <p><strong>Annotate</strong> them with summary ops:</p>
+	    <pre><code class="haskell">
+my_img_summary = tf.summary.image("img", img)
+my_cost_summary = tf.summary.scalar("cost", cost)
 	    </code></pre>
 	  </section>
 
 	  <section>
-	    <h3>Convolution</h3>
-	    <img width="60%" src="imgs/ch09_step1_convs.png" />
-	    <pre><code class="haskell">
-conv = tf.nn.conv2d(x, w, strides=[1, 1, 1, 1], padding='SAME')
-	    </code></pre>
+	    <h1>Step 2</h1>
+	    <p>Merge your summaries together</p>
 	  </section>
-
-	  <section>
-	    <h3>ReLu after adding bias</h3>
-	    <img width="60%" src="imgs/ch09_step2_conv_outs.png" />
-	    <pre><code class="haskell">
-conv_with_b = tf.nn.bias_add(conv, b)
-conv_out = tf.nn.relu(conv_with_b)
-	    </code></pre>
-	  </section>
-
-	  <section>
-	    <img class="plain" src="imgs/ch09_maxpool.png" />
-	  </section>
-
 	  
 	  <section>
-	    <h3>Maxpool</h3>
-	    <img width="60%" src="imgs/ch09_step3_maxpool.png" />
+	    <h3><code>tf.summary.merge_all</code></h3>
 	    <pre><code class="haskell">
-maxpool = tf.nn.max_pool(conv_out,
-                         ksize=[1, k, k, 1],
-                         stride=[1, k, k, 1],
-                         padding='SAME')
+my_summaries = tf.summary.merge_all()
 	    </code></pre>
+	    <iframe width="560" height="315" src="https://www.youtube.com/embed/SEPxfMvq7MY" frameborder="0" allowfullscreen></iframe>
 	  </section>
 
 	  <section>
-	    <h3>Tips and tricks</h3>
-	    <ul>
-	      <li>Augment data</li>
-	      <li>Early stopping</li>
-	      <li>Regularize weights</li>
-	      <li>Dropout</li>
-	      <li>Deeper</li>
-	    </ul>
+	    <h1>Step 3</h1>
+	    <p>Pass summary data to <code>FileWriter</code></p>
+	  </section>
+
+	  <section>
+	    <h3><code>tf.summary.FileWriter</code></h3>
+	    <p>Initialize the writer:</p>
+	    <pre><code class="haskell">
+my_writer = tf.summary.FileWriter(tensorboard_dir, sess.graph)
+	    </code></pre>
+	    <br>
+	    <p>Run the summary op, and pass it to the writer:</p>
+	    <pre><code class="haskell">
+my_summaries_protobuf = sess.run(my_summaries, feed_dict=...)
+my_writer.add_summary(my_summaries_protobuf)
+	    </code></pre>
+	    <small>But do this sparingly (i.e. not every step of training)</small>
+	  </section>
+
+	  <section>
+	    <h3>Your turn</h3>
+	    <a target="_blank" href="https://github.com/BinRoot/Variational-Autoencoder">Here's a real-world example</a>
+	  </section>
+
+	  <section>
+	    <h3><code>video.mp4</code></h3>
+	    <iframe width="560" height="315" src="https://www.youtube.com/embed/187FT64FOB0" frameborder="0" allowfullscreen></iframe>
 	  </section>
 
 	  

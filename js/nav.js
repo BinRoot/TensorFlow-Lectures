@@ -15,10 +15,11 @@ document.write('\
 <li class="dropdown">\
   <a href="#" class="dropdown-toggle my-dropdown-getting-started" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Getting started <span class="caret"></span></a>\
   <ul class="dropdown-menu">\
+    <li><a href="lec_workshop.html">Welcome</a></li>\
     <li><a href="lec_ml.html">Machine Learning</a></li>\
     <li><a href="lec_tf_install.html">Installing TensorFlow</a></li>\
     <li><a href="lec_tf_intro.html">TensorFlow intro</a></li>\
-    <li><a href="#">TensorBoard</a></li>\
+    <li><a href="lec_tensorboard.html">TensorBoard</a></li>\
   </ul>\
 </li>\
 <li class="dropdown">\
