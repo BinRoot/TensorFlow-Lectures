@@ -86,7 +86,6 @@
 	    <aside class="notes">Hi there! This is a lecture note. Every slide has a little blurb of text like this!</aside>
 	  </section>
 
-	  
 	  <section>
 	    <img src="imgs/ch10_rnn1.png" />
 	  </section>
@@ -113,6 +112,43 @@
 	  
 	  <section>
 	    <img src="imgs/ch10_hallucinations.png" />
+	  </section>
+
+	  <section>
+	    <h3>RNN + NLP</h3>
+	    <a href="https://arstechnica.com/the-multiverse/2016/06/an-ai-wrote-this-movie-and-its-strangely-moving/" target="_blank">Movie written by algorithm</a>
+	  </section>
+
+	  <section data-background="#bfb">
+	    <h3>Exercise</h3>
+	    <p>Try it yourself!</p>
+	  </section>
+
+	  
+	  <section data-background="#bfb">
+	    <h3>Hint 1</h3>
+	    <p>$x \subseteq \mathbb{R}^k,~ w \subseteq \mathbb{R}^{h \times v},~ b \subseteq \mathbb{R}^{v}$</p>
+	    <pre><code class="python">
+def rnn(x, w, b):  # x = [3, 12, 1]
+    x = tf.split(x, n_input, 1)  # x = [[3] [12] [1]]
+    rnn_cell = rnn.BasicLSTMCell(n_hidden)
+    ys, hs = rnn.static_rnn(rnn_cell, x, dtype=tf.float32)
+
+    # only the last output matters
+    return tf.matmul(ys[-1], w) + b
+	    </code></pre>
+	  </section>
+
+	  <section data-background="#bfb">
+	    <h3>Hint 2</h3>
+	    <pre><code class="haskell">
+y_model = rnn(x, w, b)
+cost = tf.reduce_mean(
+    tf.nn.softmax_cross_entropy_with_logics(y_model, y)
+)
+optimizer = tf.train.RMSPropOptimizer(learning_rate)
+train_op = optimizer.minimize(cost)
+	    </code></pre>
 	  </section>
 	  
 	  

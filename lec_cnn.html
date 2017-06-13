@@ -135,8 +135,8 @@ conv_out = tf.nn.relu(conv_with_b)
 	  
 	  <section>
 	    <h3>Maxpool</h3>
-	    <img width="60%" src="imgs/ch09_step3_maxpool.png" />
-	    <pre><code class="haskell">
+	    <img width="50%" src="imgs/ch09_step3_maxpool.png" />
+	    <pre><code class="haskell" data-trim>
 maxpool = tf.nn.max_pool(conv_out,
                          ksize=[1, k, k, 1],
                          stride=[1, k, k, 1],
@@ -155,6 +155,11 @@ maxpool = tf.nn.max_pool(conv_out,
 	    </ul>
 	  </section>
 
+	  <section data-background="#bfb">
+	    <h3>Exercise</h3>
+	    <p>Try it yourself!</p>
+	    <p><a href="https://www.cs.toronto.edu/~kriz/cifar.html">Download CIFAR-10</a></p>
+	  </section>
 	  
 	</section>
       </div>
