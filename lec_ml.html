@@ -236,6 +236,32 @@
 	    </ul>
 	  </section>
 
+	  <section>
+	    <h3>Cross-validation</h3>
+	    <p>$X = ($ <font color="green"> $x_1, x_2, x_3, x_4, x_5, $</font><font color="red"> $x_6, x_7, x_8$ </font>$)$</p>
+	    <p>$Y = ($ <font color="green"> $y_1, y_2, y_3, y_4, y_5, $</font><font color="red"> $y_6, y_7, y_8$ </font>$)$</p>
+	  </section>
+	  
+	  <section>
+	    <h3>Regularization</h3>
+	    <p>$J(\theta) = MSE_{\theta}(\vec{y}_{pred}, \vec{y}_{actual})$</p>
+	    <p>$Loss(\theta; \lambda) = J(\theta) + $ <font color="#288">$\lambda ||\theta|| $</font></p>
+	    <p>$X = ($ <font color="green"> $x_1, x_2, x_3, x_4, $</font><font color="blue"> $x_5, x_6, $ </font><font color="red">$x_7, x_8$</font> $)$</p>
+	    <p>$Y = ($ <font color="green"> $y_1, y_2, y_3, y_4, $</font><font color="blue"> $y_5, y_6, $ </font><font color="red">$y_7, y_8$</font> $)$</p>
+	    <p><font color="green">train</font>, <font color="blue">validation</font>, <font color="red">test</font></p>
+	  </section>
+
+	  <section data-background="#bfb">
+	    <h3>Exercise</h3>
+	    <p><a target="_blank" href="http://archive.ics.uci.edu/ml/datasets/Wine+Quality">Download this wine dataset</a></p>
+	    <pre><code>
+from sklearn import linear_model
+clf = linear_model.Lasso(alpha=0.1)
+clf.fit(xs, ys)
+	    </code></pre>
+	    <p>Use cross-validation to find the hyper-parameter $\alpha$.</p>
+	  </section>
+
 	</section>
       </div>
     </div>
