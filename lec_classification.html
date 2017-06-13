@@ -115,7 +115,35 @@
 	  </section>
 
 	  <section>
+	    <p>$x \in \mathbb{R}^{n \times p}$</p>
+	    <p>$w \in \mathbb{R}^{p \times q}$</p>
+	    <p>$b \in \mathbb{R}^q$</p>
+	    <pre><code class="haskell">
+y_model = tf.sigmoid( tf.nn.xw_plus_b(x, w, b) )		
+	    </code></pre>
+	  </section>
+
+	  <section>
 	    <img class="plain" src="imgs/ch04_logs.png" />
+	  </section>
+	  
+	  <section>
+	    <pre><code class="haskell">
+y_ph = ...      -- [1.0, 0.0, 0.0]
+y_model = ...   -- [0.8, 0.1, 0.2]
+	    </code></pre>
+	    
+	    <pre><code class="haskell">
+loss = tf.reduce_mean(
+    tf.nn.softmax_cross_entropy_with_logits(y_model, y_ph)
+)
+	    </code></pre>
+	  </section>
+
+	  <section data-background="#bfb">
+	    <h3>Exercise</h3>
+	    <p>Time to try it out!</p>
+	    <p><a href="https://archive.ics.uci.edu/ml/datasets/Adult" target="_blank">Download Census Income dataset</a></p>
 	  </section>
 
 	  <section>
@@ -153,7 +181,6 @@
 	  <section>
 	    <img class="plain" src="imgs/ch04_1vall.png" />
 	  </section>
-
 	  
 	</section>
       </div>
