@@ -89,8 +89,10 @@
 	  <section>
 	    <p>Learning:</p>
 	    <img src="imgs/ch01_learning.png" />
+	    <div  class="fragment fade-down">
 	    <p>Inference:</p>
 	    <img src="imgs/ch01_test.png" />
+	    </div>
 	  </section>
 
 	  <section>
@@ -116,28 +118,32 @@
 
 	  <section>
 	    <h3>Measuring distances</h3>
+	    <div class="fragment fade-down">
 	    <p>L1-norm:</p>
 	    <img class="plain" src="imgs/ch01_distl1.png" />
+	    </div>
+	    <div class="fragment fade-down">
 	    <p>L2-norm:</p>
 	    <img class="plain" src="imgs/ch01_distl2.png" />
+	    </div>
 	  </section>
 
 	  <section>
 	    <h3>Example</h3>
 	    <p>Let's say you're making a search engine.</p>
 	    <p>You want to minimize number of incorrect search results.</p>
-	    <p>Let $v \in \mathbb{R}^{12}$ denote error counts per month.</p>
-	    <p>For example, $v_0$ is Janurary's error count.</p>
-	    <p>$v_7$ is July's error count.</p>
+	    <p class="fragment">Let $v \in \mathbb{R}^{12}$ denote error counts per month.</p>
+	    <p class="fragment">For example, $v_0$ is Janurary's error count.</p>
+	    <p class="fragment">$v_7$ is July's error count.</p>
 	  </section>
 
 	  <section data-background="#bfb">
 	    <blockquote>Users shouldn’t see 5 or more incorrect search-results per month</blockquote>
-	    <p>$||v||_{\infty}$ &lt; 5</p>
+	    <p class="fragment fade-down">$||v||_{\infty}$ &lt; 5</p>
 	    <blockquote>Less than 5 erroneous search-results are allowed for the entire year</blockquote>
-	    <p>$||v||_1 < 5$</p>
+	    <p class="fragment fade-down">$||v||_1 < 5$</p>
 	    <blockquote>The number of months with erroneous search-results should be less than 5</blockquote>
-	    <p>$||v||_0 < 5$</p>
+	    <p class="fragment fade-down">$||v||_0 < 5$</p>
 	  </section>
 
 	  <section>
@@ -162,34 +168,36 @@
 	    <p>Given a set of data $X$, the cost is denoted $J(\theta ; X)$</p>
 
 	    <table>
-	      <tr>
+	      <tr class="fragment">
 		<th>input</th>
 		<th>output</th>
 		<th>prediction</th>
 	      </tr>
-	      <tr>
+	      <tr class="fragment">
 		<td>$x_1$</td>
 		<td>$f(x_1)$</td>
 		<td>$g(x_1)$</td>
 	      </tr>
-	      <tr>
+	      <tr class="fragment">
 		<td>$x_2$</td>
 		<td>$f(x_2)$</td>
 		<td>$g(x_2)$</td>
 	      </tr>
-	      <tr>
+	      <tr class="fragment">
 		<td>$...$</td>
 		<td>$...$</td>
 		<td>$...$</td>		      
 	      </tr>
-	      <tr>
+	      <tr class="fragment">
 		<td>$x_n$</td>
 		<td>$f(x_n)$</td>
 		<td>$g(x_n)$</td>		      
 	      </tr>
 	    </table>
+	    <div class="fragment">
 	    <p>$J(\theta;X) = \sum_{x \in X}||g(x) - f(x)||$</p>
 	    <p>$\theta^* = \arg \min J(\theta ; X)$</p>
+	    </div>
 	  </section>
 	  
 	  <section>
@@ -245,10 +253,12 @@
 	  <section>
 	    <h3>Regularization</h3>
 	    <p>$J(\theta) = MSE_{\theta}(\vec{y}_{pred}, \vec{y}_{actual})$</p>
-	    <p>$Loss(\theta; \lambda) = J(\theta) + $ <font color="#288">$\lambda ||\theta|| $</font></p>
+	    <p class="fragment">$Loss(\theta; \lambda) = J(\theta) + $ <font color="#288">$\lambda ||\theta|| $</font></p>
+	    <div class="fragment">
 	    <p>$X = ($ <font color="green"> $x_1, x_2, x_3, x_4, $</font><font color="blue"> $x_5, x_6, $ </font><font color="red">$x_7, x_8$</font> $)$</p>
 	    <p>$Y = ($ <font color="green"> $y_1, y_2, y_3, y_4, $</font><font color="blue"> $y_5, y_6, $ </font><font color="red">$y_7, y_8$</font> $)$</p>
-	    <p><font color="green">train</font>, <font color="blue">validation</font>, <font color="red">test</font></p>
+	    </div>
+	    <p class="fragment"><font color="green">train</font>, <font color="blue">validation</font>, <font color="red">test</font></p>
 	  </section>
 
 	  <section data-background="#bfb">
