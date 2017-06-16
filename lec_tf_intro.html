@@ -134,7 +134,7 @@ for price, amount in zip(prices, amounts):
 import numpy as np		
 	    </code></pre>
 
-	    <pre><code class="haskell">
+	    <pre><code class="haskell fragment">
 revenue = np.dot(prices, amounts)
 	    </code></pre>
 
@@ -143,15 +143,15 @@ revenue = np.dot(prices, amounts)
 	  <section>
 	    <h3>TensorFlow equivalent</h3>
 	    
-	    <pre><code>
+	    <pre><code class="fragment">
 import tensorflow as tf		
 	    </code></pre>
 
-	    <pre><code class="haskell">
+	    <pre><code class="haskell fragment">
 revenue = tf.tensordot(prices, amounts, 1)
 	    </code></pre>
 
-	    <pre><code class="haskell">
+	    <pre><code class="haskell fragment">
 sess = tf.Session()
 revenue_val = sess.run(revenue)
 	    </code></pre>
@@ -174,11 +174,13 @@ sess = tf.Session()
 sess.run(...)
 sess.close()
 	    </code></pre>
+	    <div class="fragment fade-down">
 	    <p>Or better yet, just use a context manager:</p>
 	    <pre><code class="haskell">
 with tf.Session() as sess:
     sess.run(...)
 	    </code></pre>
+	    </div>
 
 	  </section>
 
@@ -199,12 +201,14 @@ m1 = tf.constant([[1., 2.]])
 print(m1)
 	    </code></pre>
 
+	    <div class="fragment fade-down">
 	    <p>Output:</p>
 	    <pre><code class="python">
 Tensor( "Const:0",
         shape=TensorShape([Dimension(1), Dimension(2)]),
         dtype=float32 )
 	    </code></pre>
+	    </div>
 	    
 	  </section>
 
@@ -213,15 +217,14 @@ Tensor( "Const:0",
 m2 = tf.constant([[1],
                   [2]])
 	    </code></pre>
-
+	    <div class="fragment fade-down">
 	    <p>Output:</p>
 	    <pre><code class="python">
 Tensor( "Const_1:0",
         shape=TensorShape([Dimension(2), Dimension(1)]),
         dtype=int32 )
 	    </code></pre>
-
-		
+	    </div>
 	  </section>
 
 	  <section>
@@ -233,7 +236,8 @@ m3 = tf.constant([ [[1,2],
                     [9,10],
                     [11,12]] ])
 	    </code></pre>
-	    
+
+	    <div class="fragment fade-down">
 	    <p>Output:</p>
 	    <pre><code class="python">
 Tensor( "Const_2:0",
@@ -242,6 +246,7 @@ Tensor( "Const_2:0",
                            Dimension(2)]),
         dtype=int32 )
 	    </code></pre>
+	    </div>
 	  </section>
 
 	  <section>
@@ -252,11 +257,13 @@ x = <mark>tf.zeros</mark>([2, 3], tf.float32)
 sess = tf.Session()
 sess.run(x)
 	    </code></pre>
+	    <div class="fragment fade-down">
 	    <p>Output:</p>
 	    <pre><code class="python">
 array([[ 0.,  0.,  0.],
        [ 0.,  0.,  0.]], dtype=float32)	
 	    </code></pre>
+	    </div>
 	  </section>
 
 	  <section>
@@ -268,11 +275,13 @@ z = tf.<mark>zeros_like</mark>(y, tf.float32)
 sess = tf.Session()
 sess.run(z)
 	    </code></pre>
+	    <div class="fragment fade-down">
 	    <p>Output:</p>
 	    <pre><code class="python">
 array([[ 0.,  0.,  0.],
        [ 0.,  0.,  0.]], dtype=float32)	
 	    </code></pre>
+	    </div>
 	  </section>
 
 	  <section>
@@ -283,11 +292,13 @@ x = <mark>tf.ones</mark>([2, 3], tf.float32)
 sess = tf.Session()
 sess.run(x)
 	    </code></pre>
+	    <div class="fragment fade-down">
 	    <p>Output:</p>
 	    <pre><code class="python">
 array([[ 1.,  1.,  1.],
        [ 1.,  1.,  1.]], dtype=float32)	
 	    </code></pre>
+	    </div>
 	  </section>
 
 	  <section>
@@ -299,11 +310,13 @@ z = <mark>tf.ones_like</mark>(y, tf.float32)
 sess = tf.Session()
 sess.run(z)
 	    </code></pre>
+	    <div class="fragment fade-down">
 	    <p>Output:</p>
 	    <pre><code class="python">
 array([[ 1.,  1.,  1.],
        [ 1.,  1.,  1.]], dtype=float32)	
 	    </code></pre>
+	    </div>
 	  </section>
 
 	  <section>
@@ -314,22 +327,24 @@ x = <mark>tf.fill</mark>([2, 3], 0.1)
 sess = tf.Session()
 sess.run(z)
 	    </code></pre>
+	    <div class="fragment fade-down">
 	    <p>Output:</p>
 	    <pre><code class="python">
 array([[ 0.1,  0.1,  0.1],
        [ 0.1,  0.1,  0.1]], dtype=float32)	
 	    </code></pre>
+	    </div>
 	  </section>
 
 	  <section>
 	    <h3>Other useful ops</h3>
 	    <small>
 	    <ul>
-	      <li><code>tf.linspace(0., 100., 11)</code></li>
-	      <li><code>tf.range(1, 10)</code></li>
-	      <li><code>tf.random_normal([2, 3])</code></li>
-	      <li><code>tf.truncated_normal([2, 3])</code></li>
-	      <li><code>tf.random_uniform([2, 3])</code></li>
+	      <li class="fragment"><code>tf.linspace(0., 100., 11)</code></li>
+	      <li class="fragment"><code>tf.range(1, 10)</code></li>
+	      <li class="fragment"><code>tf.random_normal([2, 3])</code></li>
+	      <li class="fragment"><code>tf.truncated_normal([2, 3])</code></li>
+	      <li class="fragment"><code>tf.random_uniform([2, 3])</code></li>
 	    </ul>
 	    </small>
 	  </section>
@@ -344,32 +359,36 @@ weights = tf.Variable(tf.random_normal([784, 200],
 biases = tf.Variable(tf.zeros([200]), name="biases")
 	    </code></pre>
 
+	    <div class="fragment fade-down">
 	    <p>Create an op to initialize variables:</p>
 	    <pre><code class="python" data-trim>
 init_op = tf.global_variables_initializer()
 	    </code></pre>
+	    </div>
 
+	    <div class="fragment fade-down">
 	    <p>Initialize and use:</p>
 	    <pre><code class="python" data-trim>
 with tf.Session() as sess:
   sess.run(init_op)
 	    </code></pre>
+	    </div>
 	  </section>
 
 	  <section>
 	    <h3>TensorFlow code guideline</h3>
 	    <p>Your code should follow this order:</p>
 	    <ol>
-	      <li><strong>Imports</strong></li>
-	      <li><strong>Constants</strong> <i>(hyper-parameters)</i></li>
-	      <li><strong>Placeholders</strong> <i>(input and output examples)</i></li>
-	      <li><strong>Variables</strong> <i>(model parameters)</i></li>
-	      <li><strong>Ops</strong> <i>(loss function and optimizer)</i></li>
-	      <li><strong>Session evals</strong></li>
+	      <li class="fragment"><strong>Imports</strong></li>
+	      <li class="fragment"><strong>Constants</strong> <i>(hyper-parameters)</i></li>
+	      <li class="fragment"><strong>Placeholders</strong> <i>(input and output examples)</i></li>
+	      <li class="fragment"><strong>Variables</strong> <i>(model parameters)</i></li>
+	      <li class="fragment"><strong>Ops</strong> <i>(loss function and optimizer)</i></li>
+	      <li class="fragment"><strong>Session evals</strong></li>
 	    </ol>
 	  </section>
 
-	  <section>
+	  <section data-background="#bfb">
 	    <h3>What's wrong with this code?</h3>
 	    <pre><code class="haskell">
 x = tf.constant(1)

@@ -112,11 +112,13 @@ img = tf.placeholder(tf.float32, [None, None, None, 3])
 cost = tf.reduce_sum(...)
 	    </code></pre>
 	    <br>
+	    <div class="fragment fade-down">
 	    <p><strong>Annotate</strong> them with summary ops:</p>
 	    <pre><code class="haskell">
 my_img_summary = tf.summary.image("img", img)
 my_cost_summary = tf.summary.scalar("cost", cost)
 	    </code></pre>
+	    </div>
 	  </section>
 
 	  <section>
@@ -129,7 +131,7 @@ my_cost_summary = tf.summary.scalar("cost", cost)
 	    <pre><code class="haskell">
 my_summaries = tf.summary.merge_all()
 	    </code></pre>
-	    <iframe width="560" height="315" src="https://www.youtube.com/embed/SEPxfMvq7MY" frameborder="0" allowfullscreen></iframe>
+	    <iframe class="fragment" width="560" height="315" src="https://www.youtube.com/embed/SEPxfMvq7MY" frameborder="0" allowfullscreen></iframe>
 	  </section>
 
 	  <section>
@@ -144,12 +146,14 @@ my_summaries = tf.summary.merge_all()
 my_writer = tf.summary.FileWriter(tensorboard_dir, sess.graph)
 	    </code></pre>
 	    <br>
+	    <div class="fragment fade-down">
 	    <p>Run the summary op, and pass it to the writer:</p>
 	    <pre><code class="haskell">
 my_summaries_protobuf = sess.run(my_summaries, feed_dict=...)
 my_writer.add_summary(my_summaries_protobuf)
 	    </code></pre>
-	    <small>But do this sparingly (i.e. not every step of training)</small>
+	    </div>
+	    <small class="fragment fade-up">But do this sparingly (i.e. not every step of training)</small>
 	  </section>
 
 	  <section>
