@@ -264,11 +264,14 @@
 	  <section data-background="#bfb">
 	    <h3>Exercise</h3>
 	    <p><a target="_blank" href="http://archive.ics.uci.edu/ml/datasets/Wine+Quality">Download this wine dataset</a></p>
-	    <pre><code>
+	    <pre><code class="python">
 from sklearn import linear_model
+	    </code></pre>
+	    <pre><code class="haskell">
 clf = linear_model.Lasso(alpha=0.1)
 clf.fit(xs, ys)
 	    </code></pre>
+
 	    <p>Use cross-validation to find the hyper-parameter $\alpha$.</p>
 	  </section>
 
