@@ -87,6 +87,26 @@
 	  </section>
 
 	  <section>
+	    <h3>Contact info</h3>
+	    <p><a target="_blank" href="http://shukla.io">Nishant Shukla</a></p>
+	    <p><code>nxs</code>@ucla.edu</p>
+	    <aside class="notes">If you ever have any questions, comments, concerns, suggestions, or requests, please feel free to email me.</aside>
+	  </section>
+
+	  <section>
+	    <h3>Origins of MLTF</h3>
+	    <ul>
+	      <li><a href="http://shuklan.com/haskell" target="_blank">2013 - Introduction to Haskell</a></li>
+	      <li><a href="http://haskelldata.com" target="_blank">2014 - Haskell Data Analysis Cookbook</a></li>
+	      <li><a href="http://hackuva.io" target="_blank">2014 - Hack.UVA</a></li>
+	      <li><a href="http://chemivision.com" target="_blank">2015 - ChemiVision</a>
+	      <li><a href="http://vcla.stat.ucla.edu/" target="_blank">2015 - VCLA</a>
+	      <li><a href="https://www.kaggle.com/jobs/17183/spacex-lead-data-scientist-los-angeles-ca" target="_blank">2016 - SpaceX</a>
+	      <li><a href="http://tensorflowbook.com" target="_blank">2017 - Machine Learning with TensorFlow</a></li>
+	    </ul>
+	  </section>
+	  
+	  <section>
 	    <h2>Goals</h2>
 	    <p>You will learn...</p>
 	    <ul>
@@ -152,6 +172,7 @@
 	      <li><strong>Welcome</strong></li>
 	    </ol>
 	    </small>
+	    <aside class="notes">We begin by laying out all the things you will learn throughout the entire workshop. This "Getting started" lecture introduces the who, what, where, when, and why of the workshop. Coming up, the next slides should provide a mental map of what's to come. </aside>
 	  </section>
 
 	  
@@ -164,6 +185,7 @@
 	      <li><strong>Machine Learning</strong></li>
 	    </ol>
 	    </small>
+	    <aside class="notes">In the next lecture, we'll cover the basics of ML. There will be no TensorFlow code whatsoever. The section will cover theory that can be applicable to any programming environment.</aside>
 	  </section>
 	  
 	  
@@ -177,6 +199,7 @@
 	      <li><strong>Installing TensorFlow</strong></li>
 	    </ol>
 	    </small>
+	    <aside class="notes">Installing TensorFlow with GPU support isn't as plug-and-play as it's made out to be. Let's carefully go through the installation instructions so you can get your dev enviornment up and running.</aside>
 	  </section>
 	  
 	  <section data-transition="slide">
@@ -186,10 +209,11 @@
 	    <ol>
 	      <li>Welcome</li>
 	      <li>Machine Learning</li>
-	      <li>Installing TensorFlow</strong></li>
+	      <li>Installing TensorFlow</li>
 	      <li><strong>TensorFlow intro</strong></li>
 	    </ol>
-	    </small>
+            </small>
+	    <aside class="notes">Next up, we get our hands dirty with TensorFlow. However, this section will not focus on ML at all, because TensorFlow isn't tightly coupled to ML.</aside>
 	  </section>
 
 	  <section data-transition="slide">
@@ -199,11 +223,12 @@
 	    <ol>
 	      <li>Welcome</li>
 	      <li>Machine Learning</li>
-	      <li>Installing TensorFlow</strong></li>
+	      <li>Installing TensorFlow</li>
 	      <li>TensorFlow intro</li>
 	      <li><strong>TensorBoard</strong></li>
 	    </ol>
 	    </small>
+	    <aside class="notes">What good is your code if you can't maintain it? TensorBoard is a way to visualize not only your algorithm, but also historical values. Moreover, it provides convenient tools to visualize vector embedding.</aside>
 	  </section>
 
 
@@ -215,6 +240,7 @@
 	      <li><strong>Regression</strong></li>
 	    </ol>
 	    </small>
+	    <aside class="notes">In supervised learning, regression comes up a lot. Any time you have training data of input-output pairs you can formulate your problem with regression.</aside>
 	  </section>
 
 	  <section data-transition="slide">
@@ -226,6 +252,7 @@
 	      <li><strong>Classification</strong></li>
 	    </ol>
 	    </small>
+	    <aside class="notes">Contrary to regression, classification works under the special case when the output values take on categorial values instead of a continuous spectrum of real-numbers.</aside>
 	  </section>
 
 	  <section data-transition="slide">
@@ -238,6 +265,7 @@
 	      <li><strong>Autoencoder</strong></li>
 	    </ol>
 	    </small>
+	    <aside class="notes">The autoencoder will be our first voyage onto the neural network paradigm of algorithms. It's an elegant and intuitive architecture that's still undergoing state-of-the-art research.</aside>
 	  </section>
 
 	  <section data-transition="slide">
@@ -251,6 +279,7 @@
 	      <li><strong>Convolutional NN</strong></li>
 	    </ol>
 	    </small>
+	    <aside class="notes">After 2012, object-detection was no longer an unreachable dream. The efficieny and surprising accuracy of a CNN architecture is to thank. TensorFlow provides very well documented and intuitive APIs to implement CNNs.</aside>
 	  </section>
 
 	  <section data-transition="slide">
@@ -265,6 +294,7 @@
 	      <li><strong>Recurrent NN</strong></li>
 	    </ol>
 	    </small>
+	    <aside class="notes">RNNs appear intimidating at first, but thanks to TensorFlow's APIs, it can be implemented in very few lines of code.</aside>
 	  </section>
 
 	  <section data-transition="slide">
@@ -275,6 +305,7 @@
 	      <li><strong>Word2Vec theory</strong></li>
 	    </ol>
 	    </small>
+	    <aside class="notes">Vector representation of words has become an emperically proven method to deal with natural language. This section will cover the theory behind w2v, without going into the TensorFlow implementation.</aside>
 	  </section>
 
 	  <section data-transition="slide">
@@ -286,6 +317,7 @@
 	      <li><strong>Word2Vec code</strong></li>
 	    </ol>
 	    </small>
+	    <aside class="notes">Let's get right to it! This section is about writing TensorFlow code to implement w2v.</aside>
 	  </section>
 
 	  <section data-transition="slide">
@@ -298,6 +330,7 @@
 	      <li><strong>Word2Vec TensorBoard</strong></li>
 	    </ol>
 	    </small>
+	    <aside class="notes">With TensorBoard, you can visualize the embedding matrix in an intuitive UI.</aside>
 	  </section>
 
 	  <section data-transition="slide">
@@ -311,6 +344,7 @@
 	      <li><strong>Word2Vec optimized</strong></li>
 	    </ol>
 	    </small>
+	    <aside class="notes">We can improve the w2v implementation by various tricks. This section won't go through too much of the details. Instead, it will get you started with already working code.</aside>
 	  </section>
 
 	  <section data-transition="slide">
@@ -325,6 +359,7 @@
 	      <li><strong>Sense2Vec theory</strong></li>
 	    </ol>
 	    </small>
+	    <aside class="notes">A minor improvement over w2v is sense2vec. We'll read the paper and figure out how it works.</aside>
 	  </section>
 
 
@@ -336,6 +371,7 @@
 	      <li><strong>Queue</strong></li>
 	    </ol>
 	    </small>
+	    <aside class="notes">Queues are the go-to data structure for dealing with a training data pipeline. TensorFlow comes with a great Queue API.</aside>
 	  </section>
 
 	  <section data-transition="slide">
@@ -347,6 +383,7 @@
 	      <li><strong>TensorFlow Serving</strong></li>
 	    </ol>
 	    </small>
+	    <aside class="notes">TensorFlow Serving is a web server that can return inference output in a production environment.</aside>
 	  </section>
 
 	</section>
